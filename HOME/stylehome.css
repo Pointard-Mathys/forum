@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300|Roboto:400');
+html{
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #545454;
+}
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+}
+nav h1{
+    color: #717171;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+nav .onglets{
+    margin-bottom: 0.5%;
+}
+nav .onglets a{
+    text-decoration: none;
+    color: wheat;
+    margin-right: 10px;
+    border-bottom: 1px solid wheat;
+    padding-bottom: 5px;
+}
+
+header{
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+    color: wheat;
+    position: absolute; /* postulat de départ */
+    top: 50%; left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%);
+}
+header h1{
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+}
+header h4{
+    margin-top: -20px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid wheat;
+}
+header button{
+    padding: 10px 20px;
+    background-color: wheat;
+    color:#000;
+    border:none;
+    margin-bottom: 30px;
+    outline:none;
+    font-size: 20px;
+    font-family: 'Playfair Display', serif;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main .content .card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom:20px;
+}
+.main .content .card .left{
+   flex: 0 0 30%;
+   padding: 20px;
+   background-color:wheat;
+   color:#000;
+}
+
+.main .content .card .right img{
+    height:300px;
+    width: 400px;
+    margin-top: 5px;
+}
+
+footer{
+    margin-top: 40px;
+    border-top: 5px solid white;
+    background-color: #000000;
+    color: #fff;
+    padding: 30px 100px;;
+}
+footer h1{
+    font-family: 'Playfair Display', serif;
+    border-bottom: 1px solid white;
+    width: 20%;
+    padding-bottom: 5px;
+}
+footer .services{
+    margin-top: -10px;
+    display:flex;
+    flex-wrap:wrap;
+}
+footer .services .service{
+    margin-right: 30px;
+}
+footer .services .service p{
+    max-width: 300px;
+}
+footer #contact{
+    color: rgb(181, 181, 181);
+}
+
+@media screen and (max-width:680px){
+    nav .onglets {
+        margin-left: 0px;
+    }
+    .main .card {
+        margin: 10px;
+    }
+    .main .content .card .right img{
+        height:200px;
+        width: 100%;
+        margin-top: -0px;
+    }
+    .main .content .card{
+        display: block;
+    }
+    footer{
+        padding: 30px;
+    }
+}
+
+#logo {
+    max-width: 8vh;
+    padding: 10px;
+    position: relative;
+    margin-right: auto;
+}
+
+div.absolute-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    opacity: 1;
+    visibility: visible;
+    
+    transition: all .5s;
+}
+
+canvas {
+    background: linear-gradient(0deg, #545454, #8d8d8d  50%, #545454);
+    position: relative;
+    max-width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #fff;
+}
