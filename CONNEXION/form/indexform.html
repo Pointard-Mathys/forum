@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/CONNEXION/form/styleform.css">
     
-    <title>connexion</title>
+    <title>Connexion</title>
 </head>
 <body>
     
     <div class="Login-wrapper">
     <form action="" class="Form">
-        <img src="/static/form/avatar.jpg" alt="">
+        <img src="/ASSETS/img/usericon.png" class="usericon">
         <h2>Login</h2>
         <div class="Input-group">
             <input type="text" name="loginUser" id="loginUser" required>
@@ -22,10 +22,12 @@
             <input type="password" name="loginPassword" id="loginPassword" required>
             <label for="loginPassword"Password>Password</label>
         </div>
-        <h3 ></h3>
-        <input type="submit" value="login" class="Submit-button">
+        <input type="submit" value="Login" id="Login-button">
         <a href="#forgot-pswd" class="Forgot-pswd">Forgot Password ?</a>
+        <a href="/CONNEXION/sign-in/indexsign.html" class="register">Not registered yet? Go here !</a>
     </form>
+
+        
     <div id="forgot-pswd" class="Background-image">
     <form action="" class="Form">
         <a href="#" class="Close">&times;</a>
@@ -34,13 +36,10 @@
             <input type="email" name="email" id="email" required>
             <label for="email">Email</label>
         </div>
-            <input type="submit" value="Submit" class="Submit-button">
-    </form>
+        
+            <input type="submit" value="Submit" id="Submit-button">
+       
     </div>
-    </div>  
-    <footer class="Footer">
-        <a class="Back-to-login" href="/">
-            → 
-        </a>
-    </footer>  
+    </div> 
 </body>
+</html>
