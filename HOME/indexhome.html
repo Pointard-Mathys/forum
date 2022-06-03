@@ -44,7 +44,8 @@
                 <div class="left">
                     <h1>Tacos</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <div id="main-content">
+                   
+                    <div onclick ="incrementClick()" id="main-content">
                         <div>
                           <input type="checkbox" id="checkbox" />
                           <label for="checkbox">
@@ -93,7 +94,9 @@
                         </div>
                       </div>
                 </div>
-                <a id="compteur" href="javascript:Compteur()">0</a>
+                <div>
+                    <h3 id="counter-label">0</h3>
+                </div>
                 <div class="right">
                     <img src="https://croc-gourmand.fr/wp-content/uploads/2021/04/french-tacos-scaled.jpeg" alt="">
                 </div>
@@ -265,17 +268,27 @@ window.onresize = function() {
     location.reload();
 };
 
-let compteur = 0;
-function Compteur(){
-    compteur ++;
-    document.getElementById("compteur").firstChild.nodeValue = compteur;
-   
 
+var compteur = 0;
+
+function incrementClick() {
+    
+    updateDisplay(compteur + 1);
+        
+
+    }
+    
+   
+  
+    
+
+
+function updateDisplay(val) {
+    document.getElementById("counter-label").innerHTML = val;
+    
 
 }
-
-
-
     </script>
+
 </body>
 </html>

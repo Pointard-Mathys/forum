@@ -361,9 +361,8 @@ span.s1 {
   width: 10px;
   height: 10px;
   position: relative;
-  top:55%;
-  left:85%;
-
+  top:60%;  
+  left:5%;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -388,7 +387,7 @@ a {
 svg {
   cursor: pointer;
   overflow: visible;
-  width: 60px;
+  width: 42px;
 }
 svg #heart {
   transform-origin: center;
@@ -600,6 +599,11 @@ svg #main-circ {
   }
 }
 
+#counter-label{
+position:relative;
+top: 82.4%;
+left:-250px;
+}
 /* html {
   background-color: #424148;
   font-family: sans-serif;
