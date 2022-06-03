@@ -20,8 +20,8 @@ body {
 .Form {
     position: relative;
     width: 100%;
-    max-width: 280px;
-    padding: 80px 40px 40px;
+    max-width: 300px;
+    padding: 80px 50px 65px;
     background: #171d22;
     border-radius: 10px;
     color: white;
@@ -117,9 +117,9 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    position:absolute;
-    top:270px;
-    left:250px;
+    position: absolute;
+    top: 285px;
+    left: 290px;
 }
 #Register-button {
     display: block;
@@ -150,8 +150,8 @@ body {
 
 .Forgot-pswd {
     position: absolute;
-    top:265px;
-    left:10px;
+    top: 280px;
+    left: 20px;
     color: inherit;
     font-size: small;
 }
@@ -192,9 +192,9 @@ body {
     bottom: 10px;
 }
 .register {
-    position:absolute;
-    top:290px;
-    left: 10px;
+    position: absolute;
+    top: 305px;
+    left: 20px;
     color: inherit;
     font-size: small;
 }

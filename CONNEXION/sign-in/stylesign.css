@@ -10,17 +10,24 @@ body {
 }
 
 .Form {
-    position: absolute;
-    left:40%;
-    bottom: 30%;
+    position: relative;
     width: 100%;
     max-width: 280px;
-    padding: 80px 82px 110px;
+    padding: 80px 80px 85px;
+    margin: auto;
     background: #171d22;
     border-radius: 10px;
     color: white;
     box-shadow: 0 15px 25px #171d22;
 }
+
+.Login-wrapper {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .Form:before {
     content: '';
     position: absolute;
