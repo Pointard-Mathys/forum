@@ -199,7 +199,7 @@ func DataBase() {
 
 	fmt.Println("\n")
 	fmt.Println("dataBase")
-	rows := selectAllFromTable(db, "topic")
+	rows := selectAllFromTable(db, "topics")
 	displayUserRows(rows)
 
 	fmt.Println("\n")
