@@ -54,6 +54,7 @@ func InitDatabase(database string) *sql.DB {
 		id_user INTEGER NOT NULL,
 		FOREIGN KEY(id_user) REFERENCES users(id)
 		);
+<<<<<<< HEAD
 
 	CREATE TABLE IF NOT EXISTS reponse (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -64,6 +65,16 @@ func InitDatabase(database string) *sql.DB {
 		FOREIGN KEY(id_topic) REFERENCES topics(id)
 	)
 	`
+=======
+	CREATE TABLE IF NOT EXISTS topics (
+			id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+			titre TEXT NOT NULL,
+			contain TEXT NOT NULL,
+			id_user INTEGER NOT NULL,
+			FOREIGN KEY(id_user) REFERENCES users(id_user)
+		);
+		`
+>>>>>>> 2837324 (sécurité quant au contenu des messages ajoutés en BDD)
 	_, err = db.Exec(sqlStmt)
 	if err != nil {
 		log.Printf("%q: %s\n", err, sqlStmt)
