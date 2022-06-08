@@ -69,9 +69,6 @@ func InitDatabase(database string) *sql.DB {
 		log.Printf("%q: %s\n", err, sqlStmt)
 		return nil
 	}
-
-	fmt.Println(selectAllFromTable(db, "topics"))
-
 	return db
 }
 
@@ -99,17 +96,8 @@ func InsertIntoTopic(db *sql.DB, titre string, contain string, nombre_rep int, i
 	return result.LastInsertId()
 }
 
-<<<<<<< HEAD
 func InsertIntoReponse(db *sql.DB, content string, id_user int, id_topic int) (int64, error) {
 	result, err := db.Exec(`INSERT INTO reponse (content, id_user, id_topic) VALUES (?, ?, ?)`, content, id_user, id_topic)
-=======
-func InsertIntoTopic(db *sql.DB, titre string, contain string, id_user int) (int64, error) {
-<<<<<<< HEAD
-	result, err := db.Exec(`INSERT INTO topic (titre, contain, id_user) VALUES (?, ?, ?)`, titre, contain, id_user)
->>>>>>> 7a5e499 (ajout des messages envoyés dans la db)
-=======
-	result, err := db.Exec(`INSERT INTO topics (titre, contain, id_user) VALUES (?, ?, ?)`, titre, contain, id_user)
->>>>>>> b20e951 (changements bdd.go)
 	if err != nil {
 		log.Printf("ERR: %s\n", err)
 		return -1, nil
@@ -163,7 +151,7 @@ func DeleteUsersById(db *sql.DB, table string, id int) {
 func DataBase() {
 	db := InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
 	defer db.Close()
-<<<<<<< HEAD
+
 	InsertIntoUsers(db, "Mathieu", "m.m@gmail.com", Encoding_password("secret"))
 	InsertIntoUsers(db, "Thomas", "t.t@gmail.com", Encoding_password("scret"))
 	InsertIntoUsers(db, "Lucas", "l.l@gmail.com", Encoding_password("hello"))
@@ -171,42 +159,17 @@ func DataBase() {
 	InsertIntoUsers(db, "com", "vane@gmail.com", Encoding_password("test"))
 	InsertIntoUsers(db, "com", "srvvane@gmail.com", Encoding_password("test"))
 
-	// fmt.Println("\n")
-	// fmt.Println("dataBase")
-	// rows := SelectAllFromTable(db, "users")
-	// DisplayUserRows(rows)
-
-	// fmt.Println("\n")
-	// fmt.Println("par ID")
-	// user2 := SelectUserById(db, "topics", 5)
-	// fmt.Println(user2)
-
-	// fmt.Println("\n")
-	// fmt.Println("recherche")
-	// user := SelectPattern(db, "email", "com")
-	// DisplayUserRows(user)
-
-	// DeleteUsersById(db, "topics", 1)
-=======
-	insertIntoUsers(db, "Mathieu", "m.m@gmail.com", encoding_password("secret"))
-	insertIntoUsers(db, "Thomas", "t.t@gmail.com", encoding_password("scret"))
-	insertIntoUsers(db, "Lucas", "l.l@gmail.com", encoding_password("hello"))
-	insertIntoUsers(db, "vanessa", "vanessa@gmail.com", encoding_password("world"))
-	insertIntoUsers(db, "com", "vane@gmail.com", encoding_password("test"))
-	insertIntoUsers(db, "com", "srvvane@gmail.com", encoding_password("test"))
-
-	InsertIntoTopic(db, "test", "j fait un test", 1)
+	InsertIntoTopic(db, "test", "j fait un test", 1, 1)
 
 	fmt.Println("\n")
 	fmt.Println("dataBase")
-	rows := selectAllFromTable(db, "topics")
-	displayUserRows(rows)
+	rows := SelectAllFromTable(db, "topics")
+	DisplayUserRows(rows)
 
 	fmt.Println("\n")
 	fmt.Println("par ID")
-	user2 := selectUserById(db, 4)
+	user2 := SelectUserById(db, "name", 4)
 	fmt.Println(user2)
->>>>>>> 7a5e499 (ajout des messages envoyés dans la db)
 
 	fmt.Println("\n")
 	fmt.Println("topics")
