@@ -62,7 +62,6 @@ func InitDatabase(database string) *sql.DB {
 		id_topic INTEGER,
 		FOREIGN KEY(id_user) REFERENCES users(id)
 		FOREIGN KEY(id_topic) REFERENCES topics(id)
-
 	)
 	`
 	_, err = db.Exec(sqlStmt)
@@ -176,9 +175,9 @@ func DataBase() {
 
 	// DeleteUsersById(db, "topics", 1)
 
-	// fmt.Println("\n")
-	// fmt.Println("topics")
-	// InsertIntoTopic(db, "test", "j fait un test", 0, 3)
-	// topic := SelectAllFromTable(db, "topics")
-	// DisplayTopicRows(topic)
+	fmt.Println("\n")
+	fmt.Println("topics")
+	InsertIntoTopic(db, "test", "j fait un test", 0, 4)
+	topic := SelectAllFromTable(db, "topics")
+	DisplayTopicRows(topic)
 }
