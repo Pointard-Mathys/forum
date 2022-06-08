@@ -1,16 +1,16 @@
 console.log("Hey");
 
 export function sendMessage() {
-    let text = document.getElementById("input").value
+    let text = document.getElementById("message").value
+    let forum = document.getElementById("forum")
     if (text != "" && !checkEmptyMessage(text)) {
-        let forum = document.getElementById("forum")
-        var element = document.createElement("div")
+        const element = document.createElement("div")
         element.innerText += text
         forum.appendChild(element)
-        document.getElementById("input").value = ""
     } else {
-        document.getElementById("input").value = ""
-        console.log("no text")
+        document.getElementById("message").value = ""
+        console.log("hya");
+        alert("You're trying to send an empty message!")
     }
 }
 
