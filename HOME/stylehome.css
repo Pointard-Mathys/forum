@@ -46,7 +46,6 @@ header{
     transform: translate(-50%, -50%);
 }
 header h1{
-    font-family: 'Playfair Display', serif;
     font-size: 70px;
     font-family: 'Oleo Script', cursive;
 }
@@ -238,11 +237,10 @@ span.s1 {
   max-width: 25%;
   flex-direction: row-reverse;
   border-radius: 2%;
+  cursor: pointer;
+  text-align: center;
 }
-  
-.cardright {
-    margin-left: 4% ;
-}
+
   
   .titlecard {
     padding-top: 15px;
@@ -330,12 +328,6 @@ span.s1 {
     border-radius: 50%;
     box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
   }
-
-
-
-  .cardright2 {
-    margin-left: 4% ;
-}
   
   .titlecard2 {
     padding-top: 15px;
@@ -399,16 +391,15 @@ margin: 2%;
 max-width: 25%;
 flex-direction: row-reverse;
 border-radius: 2%;
-}
-
-.cardright2 {
-  margin-left: 4% ;
+cursor: pointer;
+text-align: center;
 }
 
 .titlecard2 {
   padding-top: 15px;
   font-size: 1.3rem;
   color: #4B4B4B;
+  text-align: center;
 }
 
 
