@@ -86,6 +86,9 @@ func InitDatabase(database string) *sql.DB {
 		log.Printf("%q: %s\n", err, sqlStmt)
 		return nil
 	}
+
+	fmt.Println(selectAllFromTable(db, "topics"))
+
 	return db
 }
 
@@ -125,6 +128,13 @@ func InsertIntoReponse(db *sql.DB, content string, id_topic int, id_user int) (i
 
 func InsertIntoLike(db *sql.DB, id_reponse int, id_user int) (int64, error) {
 	result, err := db.Exec(`INSERT INTO likes (id_reponse, id_user) VALUES (?, ?)`, id_reponse, id_user)
+}
+func InsertIntoReponse(db *sql.DB, content string, id_user int, id_topic int) (int64, error) {
+	result, err := db.Exec(`INSERT INTO reponse (content, id_user, id_topic) VALUES (?, ?, ?)`, content, id_user, id_topic)
+}
+
+func InsertIntoTopic(db *sql.DB, titre string, contain string, id_user int) (int64, error) {
+	result, err := db.Exec(`INSERT INTO topic (titre, contain, id_user) VALUES (?, ?, ?)`, titre, contain, id_user)
 	if err != nil {
 		log.Printf("ERR: %s\n", err)
 		return -1, nil
