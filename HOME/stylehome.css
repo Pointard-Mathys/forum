@@ -33,7 +33,9 @@ nav .onglets a{
     border-bottom: 1px solid wheat;
     padding-bottom: 5px;
 }
-
+.contact{
+  font-size:15px;
+}
 header{
     z-index: 20;
     display: flex;
@@ -368,6 +370,7 @@ span.s1 {
   text-align: center;
 }
 
+
 h1 {
   font-size: 14px;
   font-weight: 400;
@@ -382,6 +385,13 @@ a {
   display: inline-block;
   text-decoration: none;
   color: #008A68;
+}
+
+.flag{
+width:17px;
+position: relative;
+top:264px;  
+left: -80px;
 }
 
 svg {
@@ -601,136 +611,6 @@ svg #main-circ {
 
 #counter-label{
 position:relative;
-top: 82.4%;
+top: 82.75%;
 left:-250px;
 }
-/* html {
-  background-color: #424148;
-  font-family: sans-serif;
-  font-size: 125%;
-}
-
-.container {
-  display: inline-block;
-  color: #EEE;
-  padding: 1em;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  text-align: right;
-  transform: translateY(-50%);
-  width: 61.8%;
-  white-space: nowrap;
-}
-@media screen and (max-width: 36rem) {
-  .container {
-    transform: translateY(-50%) rotate(90deg) translateX(-50%);
-  }
-}
-
-.buy, .try {
-  vertical-align: middle;
-}
-
-.follow, .share {
-  display: inline-block;
-  cursor: default;
-  padding: 0;
-  margin: 0 0.5em;
-  position: relative;
-  text-align: center;
-}
-.follow:hover .label, .share:hover .label {
-  opacity: 0;
-  transition: opacity 0.5s 0.125s ease-out;
-}
-.follow:hover .icon, .share:hover .icon {
-  border-radius: 1em;
-  margin: 0 0;
-}
-
-.icon, .label {
-  background-color: #1f7a7a;
-  line-height: 2rem;
-}
-
-.label {
-  border-radius: 1rem;
-  position: absolute;
-  font-size: 0.618em;
-  font-weight: 900;
-  letter-spacing: 0.0816em;
-  top: 0;
-  left: 0;
-  right: 0;
-  opacity: 1;
-  pointer-events: none;
-  text-transform: uppercase;
-  transition: opacity 0.5s 0.75s ease-out;
-}
-
-.icon {
-  border-radius: 0;
-  cursor: pointer;
-  display: inline-block;
-  height: 2em;
-  margin: 0 -0.5em;
-  transition: background-color 0.5s ease-out, border-radius 0.5s 0.25s ease-out, margin 0.5s 0.25s ease-out;
-  width: 2em;
-}
-.icon.first {
-  border-bottom-left-radius: 1em;
-  border-top-left-radius: 1em;
-  margin-left: 0;
-}
-.icon.last {
-  border-bottom-right-radius: 1em;
-  border-top-right-radius: 1em;
-  margin-right: 0;
-}
-.icon:hover {
-  background-color: #ebc247;
-  color: #111;
-}
-
-button {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border-radius: 50%;
-  border: 0;
-  background-color: #1f7a7a;
-  color: #EEE;
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: 900;
-  letter-spacing: 0.0816em;
-  position: relative;
-  text-transform: uppercase;
-  transition: background-color 0.25s ease-out, transform 0.5s ease-out;
-}
-button:hover {
-  background-color: #ebc247;
-  color: #111;
-}
-
-.try {
-  font-size: 0.618rem;
-  height: 3rem;
-  width: 3rem;
-  margin: 0 0.5rem;
-}
-.try:hover {
-  transform: scale(1.3333);
-}
-.try:hover .text {
-  display: inline-block;
-  transform: scale(0.75);
-}
-.try:hover ~ .buy {
-  transform: scale(0.75);
-}
-.try .text {
-  transition: transform 0.5s ease-out;
-  transform: scale(1);
-} */
