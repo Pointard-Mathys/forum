@@ -51,7 +51,6 @@ header h1{
 }
 header h4{
     margin-top: -20px;
-    font-size: 20px;
     text-align: center;
     border-bottom: 1px solid wheat;
     font-family: 'Oleo Script', cursive;
@@ -237,7 +236,6 @@ span.s1 {
   max-width: 25%;
   flex-direction: row-reverse;
   border-radius: 2%;
-  cursor: pointer;
   text-align: center;
 }
 
@@ -284,34 +282,6 @@ span.s1 {
     color: #4B4B4B;
   }
   
-
-  h5 {
-    position: absolute;
-    left: 30px;
-    bottom: -120px;
-    font-size: 6rem;
-    color: #C3C3C3;
-  }
-  
-  h6 {
-    position: absolute;
-    left: 30px;
-    bottom: -55px;
-    font-size: 2rem;
-    color: #C3C3C3;
-  }
-  
-
-  ul {
-    margin-left: 250px;
-  }
-  
-  li {
-    display: inline;
-    list-style: none;
-    padding-right: 40px;
-    color: #7B7B7B;
-  }
   
  
   .fab {
@@ -391,7 +361,6 @@ margin: 2%;
 max-width: 25%;
 flex-direction: row-reverse;
 border-radius: 2%;
-cursor: pointer;
 text-align: center;
 }
 
@@ -404,10 +373,46 @@ text-align: center;
 
 
 
+#openBtn, #closeBtn {
+	border: none;
+	background-color: hsl(0, 0%, 20%);
+	color: #fff;
+	border-radius: 3px;
+	width: 200px;
+	height: 40px;
+	font-size: 1rem;
+	font-family: sans-serif;
+	cursor: pointer;
+}
 
 
+#closeBtn {
+	width: 80px;
+	height: 30px;
+	font-size: 0.9rem;
+	margin-bottom: 30px;
+}
 
+#openBtn:hover, #openBtn:focus,
+#closeBtn:hover, #closeBtn:focus{
+	background-color: hsl(0, 56%, 30%);
+  transition: 1s;
+}
 
+#openBtn {
+  margin: 20px;
+  max-width: 15%;
+}
+
+dialog {
+	width: 80%;
+	height: 80%;
+	position: fixed;
+	top: 30px;
+	font-family: sans-serif;
+	color: #555;
+  z-index: 20;
+}
 
 
 
@@ -421,3 +426,15 @@ text-align: center;
 ::-webkit-scrollbar-thumb{
   background-color: #fff;
 }
+
+
+
+
+
+
+
+
+
+
+
+

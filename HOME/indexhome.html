@@ -11,6 +11,7 @@
     <nav>
         <img src="/ASSETS/img/wYk_logo.svg" alt="" id="logo">
         <div class="onglets">
+            <a href="/CONNEXION/form/indexform.html" class="contact">Se connecter</a>
             <a href="/CONNEXION/sign-in/indexsign.html">S'inscrire</a>
             <a href="#contact">Contact</a>
         </div>
@@ -71,7 +72,14 @@
         <div class="cardright2">
             <div class="separateur2"></div>
             <p class="textIN2">ICI VOUS POUVEZ LIBREMENT EXPRIMER VOS IDEES!</p>
-            <h1 class="titlecard2">GO !</h1>
+            <button id="openBtn">GO !</button>
+<dialog id="dialog">
+	<button id="closeBtn">close</button>
+
+<p id="demo"></p>
+		</li2>
+	</ul2>
+</dialog>
         </div>
     </div>
     </section>
@@ -108,7 +116,7 @@ canvas.height = document.body.clientHeight;
 
 var ctx = canvas.getContext('2d');
 
-var characterList = ['w', 'Y', 'k', "Skyoz"];
+var characterList = ['w','Y','k','wYk'];
 
 var layers = {
     n: 9, //number of layers
@@ -217,6 +225,23 @@ update();
 window.onresize = function() {
     location.reload();
 };
+
+/* ----- button open and close */ 
+
+const dialog = document.getElementById('dialog');
+const openBtn = document.getElementById('openBtn');
+const closeBtn = document.getElementById('closeBtn');
+
+openBtn.addEventListener('click', function() {
+	dialog.setAttribute('open', true);
+})
+
+closeBtn.addEventListener('click', function() {
+	dialog.removeAttribute('open');
+});
+
+/* ------- create div pop-up */ 
+
     </script>
 </body>
 </html>
