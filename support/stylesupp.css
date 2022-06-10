@@ -88,14 +88,16 @@ body {
   .footer-content {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     text-align: center;
+    position: relative;
+    margin: 10%;
+    right: 20%;
 }
 
   .footer-content p {
     max-width: 500px;
-    margin: 10px auto;
+    margin: 0% auto;
     line-height: 28px;
     font-size: 18px;
     color: #cacdd2;
@@ -153,9 +155,13 @@ body {
   margin-left: 20%;
 
   }
+
   
   .div2 {
-  font-size: 150%;
+    font-size: 150%;
+    position: relative;
+    display: grid;
+    justify-content: space-evenly;
   }
 
   .under {
@@ -163,7 +169,6 @@ body {
   }
 
   .mid {
-    text-align: center;
     color: wheat;
   }
 
