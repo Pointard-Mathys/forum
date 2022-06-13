@@ -15,7 +15,7 @@ func testPage(w http.ResponseWriter, r *http.Request) {
 
 	isNotEmptyOrBlank := regexp.MustCompile(`\S`)
 	if name != "" && isNotEmptyOrBlank.MatchString(name) {
-		database.InsertIntoTopic(db, "Titre", name, 36, 4)
+		// database.InsertIntoTopic(db, "Titre", name, 36, 4)
 	}
 	http.ServeFile(w, r, "static/testpage/testpage.html")
 }
