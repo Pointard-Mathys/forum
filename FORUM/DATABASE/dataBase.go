@@ -93,6 +93,7 @@ func SelectAllFromTable(db *sql.DB, table string) *sql.Rows {
 	return result
 }
 
+//inserce user
 func InsertIntoUsers(db *sql.DB, name string, email string, password string) (int64, error) {
 	result, err := db.Exec(`INSERT INTO users (name, email, password) VALUES (?, ?, ?)`, name, email, password)
 	if err != nil {
@@ -101,6 +102,15 @@ func InsertIntoUsers(db *sql.DB, name string, email string, password string) (in
 	}
 	return result.LastInsertId()
 }
+
+func Login(db *sql.DB, email string, password string) User {
+	var user User
+	Epassword := Encoding_password(password)
+	db.QueryRow("SELECT * FROM users WHERE email = ? AND password = ?", email, Epassword).Scan(&user.Id, &user.Name, &user.Email, &user.Password)
+	return user
+}
+
+// _-_-_-_-_-_-_-_-_-_-_-_-
 
 func InsertIntoTopic(db *sql.DB, titre string, contain string, nombre_rep int, id_user int, archive int) (int64, error) {
 	result, err := db.Exec(`INSERT INTO topics (titre, contain, nombre_rep, id_user, archive) VALUES (?, ?, ?, ?, ?)`, titre, contain, nombre_rep, id_user, archive)
@@ -225,19 +235,18 @@ func DataBase() {
 	InsertIntoUsers(db, "com", "vane@gmail.com", Encoding_password("test"))
 	InsertIntoUsers(db, "com", "srvvane@gmail.com", Encoding_password("test"))
 
-	InsertIntoTopic(db, "test", "j fait un test", 0, 4, 1)
+	// InsertIntoTopic(db, "test", "j fait un test", 0, 4, 1)
 
-	InsertIntoReponse(db, "je rep", 1, 6)
+	// InsertIntoReponse(db, "je rep", 1, 6)
 
-	InsertIntoLike(db, 2, 2)
-	InsertIntoLike(db, 2, 2)
-	InsertIntoLike(db, 2, 2)
+	// InsertIntoLike(db, 2, 2)
+	// InsertIntoLike(db, 2, 2)
+	// InsertIntoLike(db, 2, 2)
 
-	fmt.Println(Count(db, "likes", 1))
+	// fmt.Println(Count(db, "likes", 1))
 
 	// topic := SelectArchiveFromTopic(db, 0)
 	// DisplayTopicRows(topic)
-	fmt.Println(SelectArchiveFromTopic(db, 1))
 	// rows := SelectAllFromTable(db, "users")
 	// DisplayUserRows(rows)
 
@@ -246,18 +255,19 @@ func DataBase() {
 	// user2 := SelectUserById(db, "topics", 5)
 	// fmt.Println(user2)
 
-	fmt.Println("\n")
-	fmt.Println("dataBase")
-	rows := SelectAllFromTable(db, "topics")
-	DisplayUserRows(rows)
+	// fmt.Println("\n")
+	// fmt.Println("dataBase")
+	// rows := SelectAllFromTable(db, "topics")
+	// DisplayTopicRows(rows)
 
-	fmt.Println("\n")
+	// fmt.Println("\n")
 	fmt.Println("par ID")
-	user2 := SelectUserById(db, "name", 4)
+	user2 := SelectUserById(db, "users", 4)
 	fmt.Println(user2)
 
 	// UpDate(db, "users", "email", "nazi.super.MILF@gmail.con", 1)
 
-	// fmt.Println("\n")
-	// fmt.Println("topics")
+	fmt.Println("\n")
+	userTest := Login(db, "vanessa@gmail.com", "worl")
+	fmt.Println(userTest)
 }
