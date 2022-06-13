@@ -1,1 +1,0 @@
-SELECT id_topic FROM topic
