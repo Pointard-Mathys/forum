@@ -217,6 +217,7 @@ func SelectArchiveFromTopic(db *sql.DB, archive int) ([]Topic, error) {
 func DataBase() {
 	db := InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
 	defer db.Close()
+
 	InsertIntoUsers(db, "Mathieu", "m.m@gmail.com", Encoding_password("secret"))
 	InsertIntoUsers(db, "Thomas", "t.t@gmail.com", Encoding_password("scret"))
 	InsertIntoUsers(db, "Lucas", "l.l@gmail.com", Encoding_password("hello"))
@@ -245,12 +246,15 @@ func DataBase() {
 	// user2 := SelectUserById(db, "topics", 5)
 	// fmt.Println(user2)
 
-	// fmt.Println("\n")
-	// fmt.Println("recherche")
-	// user := SelectPattern(db, "email", "com")
-	// DisplayUserRows(user)
+	fmt.Println("\n")
+	fmt.Println("dataBase")
+	rows := SelectAllFromTable(db, "topics")
+	DisplayUserRows(rows)
 
-	// DeleteUsersById(db, "topics", 1)
+	fmt.Println("\n")
+	fmt.Println("par ID")
+	user2 := SelectUserById(db, "name", 4)
+	fmt.Println(user2)
 
 	// UpDate(db, "users", "email", "nazi.super.MILF@gmail.con", 1)
 
