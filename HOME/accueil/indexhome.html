@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wYk - FORUM</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/home/stylehome.css">
+    <link rel="stylesheet" href="/HOME/accueil/stylehome.css">
 </head>
 <body>
 
@@ -72,14 +72,7 @@
         <div class="cardright2">
             <div class="separateur2"></div>
             <p class="textIN2">ICI VOUS POUVEZ LIBREMENT EXPRIMER VOS IDEES!</p>
-            <button id="openBtn">GO !</button>
-<dialog id="dialog">
-	<button id="closeBtn">close</button>
-
-<p id="demo"></p>
-		</li2>
-	</ul2>
-</dialog>
+            <a href="/HOME/discussion/discussion.html" id="openBtn">GO !</a>
         </div>
     </div>
     </section>
@@ -220,26 +213,11 @@ update();
 
 
 
-/*REAJUST CANVAS AFTER RESIZE*/
+/*réajuste le canvas après la modification de la taille du site*/
 
 window.onresize = function() {
     location.reload();
 };
-
-/* ----- button open and close */ 
-
-const dialog = document.getElementById('dialog');
-const openBtn = document.getElementById('openBtn');
-const closeBtn = document.getElementById('closeBtn');
-
-openBtn.addEventListener('click', function() {
-	dialog.setAttribute('open', true);
-})
-
-closeBtn.addEventListener('click', function() {
-	dialog.removeAttribute('open');
-});
-
     </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
 
 * {
     padding: 0;
@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Playfair Display', serif;
+  font-family: consolas;
 }
 
 .logo {
@@ -39,6 +39,7 @@ body {
     text-align: center;
     font-size: 200%;
     padding: 35px;
+    font-family: 'Oleo Script', cursive !important; 
 }
 
 .flip-card {
@@ -172,6 +173,12 @@ body {
     color: wheat;
   }
 
+  .regles {
+    text-decoration: underline;
+    color:wheat;
+    font-family: 'Oleo Script', cursive !important; 
+  }
+
   .rotate {
     animation: rotation 20s infinite linear;
   }
@@ -210,6 +217,17 @@ body {
 .fa-80x {
     font-size: 80em;
 }
+
+.textcard {
+  text-align: left;
+  padding: 20px;
+}
+
+.titlecard {
+  text-decoration: underline;
+  font-family: 'Oleo Script', cursive !important; 
+}
+
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
