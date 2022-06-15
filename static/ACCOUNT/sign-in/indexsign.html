@@ -16,25 +16,23 @@
         <h2>Créez votre compte WYK</h2>
         <div class="Input-group">
             <a href="../form/indexform.html" class="Close">&times;</a>
-            <input type="text" name="CreateAccountName" id="CreateAccountName" required>
+            <input type="name" name="CreateAccountName" id="CreateAccountName" minlength="1" size="30" required>
             <label for="loginUser" Username>Pseudonyme</label>
 
         </div>
 
         <div class="Input-group">
-            <input type="text" name="CreateAccountEmail" id="CreateAccountEmail" required>
+            <input type="email" name="CreateAccountEmail" id="CreateAccountEmail" size="30" required>
             <label for="loginUser" Email>E-mail</label>
         </div>
         <div class="Input-group">
-            <input type="password" name="CreateAccountPassword" id="CreateAccountPassword" required>
+            <input type="password" name="CreateAccountPassword" id="CreateAccountPassword" minlength="8" size="30" required>
             <label for="loginPassword" Password>Mot de passe</label>
         </div>
         <div class="Input-group">
-            <input type="password" name="CreateAccountPasswordConfirmed" id="CreateAccountPasswordConfirmed" required>
+            <input type="password" name="CreateAccountPasswordConfirmed" id="CreateAccountPasswordConfirmed" minlength="8" size="30" required>
             <label for="loginPassword" Password>Confirmation de votre mot de passe</label>
-            <input type="submit" value="Register" id="Register-button"> {{if eq .Wrong2Pass true}}
-            <div style="color:#FFFF">Please enter two same passwords</div>
-            {{end}}
+            <input type="submit" value="Register" id="Register-button">
         </div>
     </form>
 </body>
