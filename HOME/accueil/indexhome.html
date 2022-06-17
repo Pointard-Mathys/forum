@@ -9,7 +9,7 @@
 <body>
 
     <nav>
-        <img src="/ASSETS/img/wYk_logo.svg" alt="" id="logo">
+        <a href="/HOME/accueil/indexhome.html" id="bar"><img src="/ASSETS/img/wYk_logo.svg" alt="" id="logo"></a>
         <div class="onglets">
             <a href="/CONNEXION/form/indexform.html" class="buttonbar">Se connecter</a>
             <a href="/CONNEXION/sign-in/indexsign.html">S'inscrire</a>
@@ -42,11 +42,66 @@
                 <div class="left" id="left">
                     <h1 class="pseudo">Skyoz</h1>
                     <p class="time-in">Topic publié il y'a : 11 minutes</p>
+                    <br>
+                    <br>
+                    <hr>
+                    <button class="repondre">Répondre</button>
                 </div>
                 <div class="right">
                     <div class="title-in">comment faire cuire des pates al dente ?</div>
-                    <hr>
+                    <hr >
                     <div class="text-in">Description de légende ....................</div>
+                    <div onclick ="incrementClick()" id="main-content">
+                        <a href="/HOME/report/report.html"><svg class ="flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 496C64 504.8 56.75 512 48 512h-32C7.25 512 0 504.8 0 496V32c0-17.75 14.25-32 32-32s32 14.25 32 32V496zM476.3 0c-6.365 0-13.01 1.35-19.34 4.233c-45.69 20.86-79.56 27.94-107.8 27.94c-59.96 0-94.81-31.86-163.9-31.87C160.9 .3055 131.6 4.867 96 15.75v350.5c32-9.984 59.87-14.1 84.85-14.1c73.63 0 124.9 31.78 198.6 31.78c31.91 0 68.02-5.971 111.1-23.09C504.1 355.9 512 344.4 512 332.1V30.73C512 11.1 495.3 0 476.3 0z"/></svg></a>
+                        <div class="likeBtn">
+                            <input type="checkbox" id="checkbox" />
+                            <label for="checkbox">
+                                <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                        <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
+                                <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
+                      
+                                <g id="grp7" opacity="0" transform="translate(7 6)">
+                                  <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
+                                  <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
+                                </g>
+                      
+                                <g id="grp6" opacity="0" transform="translate(0 28)">
+                                  <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
+                                  <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>
+                                </g>
+                      
+                                <g id="grp3" opacity="0" transform="translate(52 28)">
+                                  <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
+                                  <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
+                                </g>
+                      
+                                <g id="grp2" opacity="0" transform="translate(44 6)">
+                                  <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
+                                  <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
+                                </g>
+                      
+                                <g id="grp5" opacity="0" transform="translate(14 50)">
+                                  <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>
+                                  <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>
+                                </g>
+                      
+                                <g id="grp4" opacity="0" transform="translate(35 50)">
+                                  <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>
+                                  <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>
+                                </g>
+                      
+                                <g id="grp1" opacity="0" transform="translate(24)">
+                                  <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
+                                  <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
+                                </g>
+                              </g>
+                            </svg>
+                          </label>
+                        </div>
+                        <h7 id="counter-label">0</h3>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -196,13 +251,23 @@ function createLetters() {
 createLetters();
 update();
 
-
-
 /*réajuste le canvas après la modification de la taille du site*/
 
 window.onresize = function() {
     location.reload();
 };
+
+var compteur = 0;
+
+function incrementClick() {
+     updateDisplay(compteur + 1)
+        ;    
+}
+    
+
+function updateDisplay(val) {
+    document.getElementById("counter-label").innerHTML = val;
+}
     </script>
 </body>
 </html>
