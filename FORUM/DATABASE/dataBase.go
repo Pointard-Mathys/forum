@@ -86,9 +86,6 @@ func InitDatabase(database string) *sql.DB {
 		log.Printf("%q: %s\n", err, sqlStmt)
 		return nil
 	}
-
-	fmt.Println(selectAllFromTable(db, "topics"))
-
 	return db
 }
 
