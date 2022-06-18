@@ -1,15 +1,9 @@
 package main
 
 import (
-<<<<<<< HEAD
 	"encoding/json"
 	"fmt"
 	account "forum/FORUM/ACCOUNT"
-=======
-	// connection "forum/FORUM/ACCOUNT/connection"
-
-	connection "forum/FORUM/ACCOUNT/connection"
->>>>>>> bbb0a25 (Route et front de la page de connexion)
 	database "forum/FORUM/DATABASE"
 	mainpage "forum/FORUM/home"
 	chat "forum/FORUM/messages"
