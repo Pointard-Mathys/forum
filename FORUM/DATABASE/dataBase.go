@@ -132,6 +132,10 @@ func InsertIntoReponse(db *sql.DB, content string, id_user int, id_topic int) (i
 
 func InsertIntoTopic(db *sql.DB, titre string, contain string, id_user int) (int64, error) {
 	result, err := db.Exec(`INSERT INTO topic (titre, contain, id_user) VALUES (?, ?, ?)`, titre, contain, id_user)
+}
+
+func InsertIntoReponse(db *sql.DB, content string, id_user int, id_topic int) (int64, error) {
+	result, err := db.Exec(`INSERT INTO reponse (content, id_user, id_topic) VALUES (?, ?, ?)`, content, id_user, id_topic)
 	if err != nil {
 		log.Printf("ERR: %s\n", err)
 		return -1, nil
