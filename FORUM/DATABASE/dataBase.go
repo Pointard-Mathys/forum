@@ -271,10 +271,12 @@ func DataBase() {
 	rows := SelectAllFromTable(db, "topics")
 	DisplayTopicRows(rows)
 
-	fmt.Println("\n")
-	fmt.Println("par ID")
-	user2 := SelectUserById(db, "name", 4)
-	fmt.Println(user2)
+	// fmt.Println("\n")
+	// fmt.Println("recherche")
+	// user := SelectPattern(db, "email", "com")
+	// DisplayUserRows(user)
+
+	// DeleteUsersById(db, "topics", 1)
 
 	// UpDate(db, "users", "email", "nazi.super.MILF@gmail.con", 1)
 
