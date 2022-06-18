@@ -196,9 +196,6 @@ span.s1 {
     color: #3C4447;
   }
   
-
-  
-  
   .thumbnail {
       float: left;
       position: relative;
@@ -210,7 +207,6 @@ span.s1 {
     overflow: hidden;
   }
 
-
 .cardleft {
   position: relative;
   background-color: #FFF;
@@ -221,7 +217,6 @@ span.s1 {
   border-radius: 2%;
   text-align: center;
 }
-
   
   .titlecard {
     padding-top: 15px;
