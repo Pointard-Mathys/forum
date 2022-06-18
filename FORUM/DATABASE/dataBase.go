@@ -267,6 +267,9 @@ func DataBase() {
 
 	// UpDate(db, "users", "email", "nazi.super.MILF@gmail.con", 1)
 
-	// fmt.Println("\n")
-	// fmt.Println("topics")
+	fmt.Println("\n")
+	fmt.Println("topics")
+	InsertIntoTopic(db, "test", "j fait un test", 0, 4)
+	topic := SelectAllFromTable(db, "topics")
+	DisplayTopicRows(topic)
 }
