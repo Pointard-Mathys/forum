@@ -50,7 +50,6 @@ func main() {
 	http.HandleFunc("/", mainpage.Mainpage)
 	http.HandleFunc("/messages", chat.Chat)
 	http.HandleFunc("/test", testPage)
-<<<<<<< HEAD
 	http.HandleFunc("/test2", testPage2)
 	http.HandleFunc("/login", account.ConnectionPage)
 	http.HandleFunc("/signin", account.SignInPage)
@@ -58,12 +57,6 @@ func main() {
 
 	http.HandleFunc("/redirect-login", account.GetDataLogin())
 	http.HandleFunc("/redirect-createaccount", account.GetData())
-
-=======
-	http.HandleFunc("/login", connection.ConnectionPage)
-	http.HandleFunc("/signin", inscription.SignInPage)
-	http.HandleFunc("/support", support.SupportPage)
->>>>>>> c94f940 (Route et front de la page de support)
 	//------------------------------------------------------------------
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.ListenAndServe(":8080", nil)
