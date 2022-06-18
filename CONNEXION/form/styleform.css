@@ -28,6 +28,12 @@ body {
     box-shadow: 0 15px 25px #171d22;
 }
 
+@media screen and (max-width: 220px) {
+    .Form {
+        max-width: 220px;
+    }
+}
+
 .Form:before {
     content: '';
     position: absolute;
@@ -121,6 +127,13 @@ body {
     top: 285px;
     left: 290px;
 }
+
+@media screen and (max-width: 450px) {
+    #Login-button {
+       left: 258px;
+    }
+}
+
 #Register-button {
     display: block;
     margin-left: auto;
@@ -281,6 +294,7 @@ nav h1{
 }
 nav .onglets{
     margin-bottom: 0.5%;
+    z-index: 50;
 }
 nav .onglets a{
     text-decoration: none;

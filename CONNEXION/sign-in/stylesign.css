@@ -21,6 +21,12 @@ body {
     box-shadow: 0 15px 25px #171d22;
 }
 
+@media screen and (max-width: 450px) {
+    .Form {
+        max-width: 220px;
+    }
+}
+
 .Login-wrapper {
     height: 200px;
     display: flex;

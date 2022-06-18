@@ -46,10 +46,18 @@ header{
     top: 50%; left: 50%; /* à 50%/50% du parent référent */
     transform: translate(-50%, -50%);
 }
+
 header h1{
-    font-size: 70px;
+  font-size: 70px;
     font-family: 'Oleo Script', cursive;
 }
+
+@media screen and (max-width: 750px){
+  header h1 {
+    font-size: 35px;
+  }
+}
+
 header h4{
     margin-top: -20px;
     text-align: center;
@@ -74,6 +82,12 @@ header button{
     display: flex;
     align-items: center;
     column-gap: 10px;
+}
+
+@media all and (max-width: 1600px) {
+  .main {
+    flex-direction: column;
+  }
 }
 .main .content .card{
     display: flex;
@@ -160,10 +174,16 @@ canvas {
 }
 
 .scroller {
-    overflow: auto;
     height: 600pt;
     background: grey;
-    width: 45%;
+    width: 50%;
+}
+
+@media screen and (max-width: 450px){
+  .scroller {
+    width: auto;
+  }
+  
 }
 
 
@@ -216,7 +236,6 @@ span.s1 {
   background-color: #FFF;
   box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
   margin: 2%;
-  max-width: 25%;
   flex-direction: row-reverse;
   border-radius: 2%;
   text-align: center;
@@ -299,6 +318,7 @@ span.s1 {
   }
   
   .textIn2 {
+    text-align: left;
     padding: 15px;
     padding-top: 10px;
     font-size: 0.95rem;
@@ -310,8 +330,7 @@ span.s1 {
 position: relative;
 background-color: #FFF;
 box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
-margin: 4%;
-max-width: 30%;
+margin: 2%;
 flex-direction: row-reverse;
 border-radius: 2%;
 text-align: center;
@@ -614,9 +633,6 @@ svg #main-circ {
 
 .repondre {
   border: none;
-  font-size: 12px;
-  width: 35%;
-  height: 15%;
   cursor: pointer;
   transition: 1s;
 }
@@ -625,9 +641,13 @@ svg #main-circ {
   background-color: #000;
   color: white;
   transition: 1s;
-  border-radius: 10px;
 }
 
 .test {
   width: 80%;
+}
+
+span {
+  color: #CC8EF5;
+  font-weight: bold;
 }

@@ -96,6 +96,23 @@ body {
     right: 20%;
 }
 
+@media screen and (max-width: 450px) {
+  .footer-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 10%;
+    right: 20%;
+  } 
+  .flip-card {
+    background-color: transparent;
+    height: 300px;
+    perspective: 1000px;
+  } 
+}
+
+
   .footer-content p {
     max-width: 500px;
     margin: 0% auto;
@@ -161,7 +178,6 @@ body {
   .div2 {
     font-size: 150%;
     position: relative;
-    display: grid;
     justify-content: space-evenly;
   }
 
@@ -227,6 +243,19 @@ body {
   text-decoration: underline;
   font-family: 'Oleo Script', cursive !important; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
