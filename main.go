@@ -1,21 +1,18 @@
 package main
 
 import (
-	// connection "forum/FORUM/ACCOUNT/connection"
+	"encoding/json"
+	"fmt"
 	account "forum/FORUM/ACCOUNT"
 	database "forum/FORUM/DATABASE"
-	mainpage "forum/FORUM/mainpage"
+	mainpage "forum/FORUM/home"
+	chat "forum/FORUM/messages"
+	support "forum/FORUM/support"
 	"net/http"
 	"regexp"
+
+	"github.com/robfig/cron/v3"
 )
-
-func ConnectionPage(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "static/ACCOUNT/form/indexform.html")
-}
-
-func CreateAccountPage(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "static/ACCOUNT/sign-in/indexsign.html")
-}
 
 func testPage(w http.ResponseWriter, r *http.Request) {
 	db := database.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
@@ -23,26 +20,45 @@ func testPage(w http.ResponseWriter, r *http.Request) {
 
 	isNotEmptyOrBlank := regexp.MustCompile(`\S`)
 	if name != "" && isNotEmptyOrBlank.MatchString(name) {
-		database.InsertIntoTopic(db, "Titre", name, 36, 4, 0)
+		database.InsertIntoTopic(db, "Titre", name, 36, 4)
 	}
+
 	http.ServeFile(w, r, "static/testpage/testpage.html")
+}
+
+func testPage2(w http.ResponseWriter, r *http.Request) {
+	db := database.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
+
+	DbData, err := database.SelectArchiveFromTopic(db, 0)
+
+	if err != nil {
+		fmt.Println("Error loading DB : ", err)
+	}
+	data, _ := json.Marshal(DbData)
+	w.Write(data)
+	return
 }
 
 func main() {
 	database.DataBase()
 	fs := http.FileServer(http.Dir("static/"))
 
+	c := cron.New()
+	c.AddFunc("18 * * * *", func() { fmt.Println("Poogie is love, Poogie is life") })
+	c.Start()
+
+	http.HandleFunc("/", mainpage.Mainpage)
+	http.HandleFunc("/messages", chat.Chat)
+	http.HandleFunc("/test", testPage)
+	http.HandleFunc("/test2", testPage2)
+	http.HandleFunc("/login", account.ConnectionPage)
+	http.HandleFunc("/signin", account.SignInPage)
+	http.HandleFunc("/support", support.SupportPage)
+
 	http.HandleFunc("/redirect-login", account.GetDataLogin())
 	http.HandleFunc("/redirect-createaccount", account.GetData())
 
-	http.HandleFunc("/create-account", CreateAccountPage)
-	http.HandleFunc("/connection", ConnectionPage)
-	http.HandleFunc("/", mainpage.Mainpage())
-	// http.HandleFunc("/test", testPage)
-
 	//------------------------------------------------------------------
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-
-	// NE PAS OU BLIER DE CHANGER AVEC LE "nil" AVEC "context.ClearHandler(http.DefaultServeMux)" si jamais il y a des soucis
 	http.ListenAndServe(":8080", nil)
 }

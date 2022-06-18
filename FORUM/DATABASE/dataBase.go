@@ -19,9 +19,10 @@ type User struct {
 type Topic struct {
 	Id         int
 	Titre      string
-	contain    string
-	nombre_rep int
-	id_user    int
+	Contain    string
+	Nombre_rep int
+	Id_user    int
+	User_Name  string
 	archive    int
 }
 
@@ -52,15 +53,18 @@ func InitDatabase(database string) *sql.DB {
 		email TEXT NOT NULL UNIQUE,
 		password TEXT NOT NULL
 	);
+
 	CREATE TABLE IF NOT EXISTS topics (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		titre TEXT NOT NULL,
 		contain TEXT NOT NULL,
 		nombre_rep INTEGER,
 		id_user INTEGER NOT NULL,
+		user_name TEXT NOT NULL,
 		archive INEGER NOT NULL,
 		FOREIGN KEY(id_user) REFERENCES users(id)
 		);
+
 	CREATE TABLE IF NOT EXISTS reponses (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		content TEXT NOT NULL,
@@ -91,7 +95,6 @@ func SelectAllFromTable(db *sql.DB, table string) *sql.Rows {
 	return result
 }
 
-//inserce user
 func InsertIntoUsers(db *sql.DB, name string, email string, password string) (int64, error) {
 	result, err := db.Exec(`INSERT INTO users (name, email, password) VALUES (?, ?, ?)`, name, email, password)
 	if err != nil {
@@ -101,22 +104,9 @@ func InsertIntoUsers(db *sql.DB, name string, email string, password string) (in
 	return result.LastInsertId()
 }
 
-func Login(db *sql.DB, email string, password string) User {
-	fmt.Println("---------------Login Function---------------")
-	var user User
-	Epassword := Encoding_password(password)
-	db.QueryRow("SELECT * FROM users WHERE email = ? AND password = ?", email, Epassword).Scan(&user.Id, &user.Name, &user.Email, &user.Password)
-	if user == (User{}) {
-		fmt.Println("Can't Load User")
-
-	}
-	return user
-}
-
-// _-_-_-_-_-_-_-_-_-_-_-_-
-
-func InsertIntoTopic(db *sql.DB, titre string, contain string, nombre_rep int, id_user int, archive int) (int64, error) {
-	result, err := db.Exec(`INSERT INTO topics (titre, contain, nombre_rep, id_user, archive) VALUES (?, ?, ?, ?, ?)`, titre, contain, nombre_rep, id_user, archive)
+func InsertIntoTopic(db *sql.DB, titre string, contain string, nombre_rep int, id_user int) (int64, error) {
+	dbUsers := InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
+	result, err := db.Exec(`INSERT INTO topics (titre, contain, nombre_rep, id_user, user_name, archive) VALUES (?, ?, ?, ?, ?, 0)`, titre, contain, nombre_rep, id_user, SelectUserById(dbUsers, "users", id_user).Name)
 	if err != nil {
 		log.Printf("ERR: %s\n", err)
 		return -1, nil
@@ -161,7 +151,7 @@ func DisplayUserRows(rows *sql.Rows) {
 func DisplayTopicRows(rows *sql.Rows) {
 	for rows.Next() {
 		var topic Topic
-		err := rows.Scan(&topic.Id, &topic.Titre, &topic.contain, &topic.nombre_rep, &topic.id_user, &topic.archive)
+		err := rows.Scan(&topic.Id, &topic.Titre, &topic.Contain, &topic.Nombre_rep, &topic.Id_user, &topic.User_Name, &topic.archive)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -198,14 +188,6 @@ func Count(db *sql.DB, table string, id_reponse int) int {
 	return n
 }
 
-// func SelectArchiveFromTopic(db *sql.DB, archive int) *sql.Rows {
-// 	var topic Topic
-// 	pattern := db.QueryRow("SELECT * FROM topics WHERE archive =?", archive)
-// 	pattern.Scan(&topic.Id, &topic.Titre, &topic.contain, &topic.nombre_rep, &topic.id_user, &topic.archive)
-// 	result, _ := db.Query(pattern)
-// 	return result
-// }
-
 func SelectArchiveFromTopic(db *sql.DB, archive int) ([]Topic, error) {
 	pattern, err := db.Query("SELECT * FROM topics WHERE archive =?", archive)
 	if err != nil {
@@ -216,7 +198,7 @@ func SelectArchiveFromTopic(db *sql.DB, archive int) ([]Topic, error) {
 	var topics []Topic
 	for pattern.Next() {
 		var topic Topic
-		if err := pattern.Scan(&topic.Id, &topic.Titre, &topic.contain, &topic.nombre_rep, &topic.id_user, &topic.archive); err != nil {
+		if err := pattern.Scan(&topic.Id, &topic.Titre, &topic.Contain, &topic.Nombre_rep, &topic.Id_user, &topic.User_Name, &topic.archive); err != nil {
 			return topics, err
 		}
 		topics = append(topics, topic)
@@ -227,29 +209,44 @@ func SelectArchiveFromTopic(db *sql.DB, archive int) ([]Topic, error) {
 	return topics, nil
 }
 
+func Login(db *sql.DB, email string, password string) User {
+	fmt.Println("---------------Login Function---------------")
+	var user User
+	Epassword := Encoding_password(password)
+	db.QueryRow("SELECT * FROM users WHERE email = ? AND password = ?", email, Epassword).Scan(&user.Id, &user.Name, &user.Email, &user.Password)
+	if user == (User{}) {
+		fmt.Println("Can't Load User")
+
+	}
+	return user
+}
+
 func DataBase() {
 	db := InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
 	defer db.Close()
 
-	InsertIntoUsers(db, "Mathieu", "m.m@gmail.com", Encoding_password("secret"))
-	InsertIntoUsers(db, "Thomas", "t.t@gmail.com", Encoding_password("scret"))
-	InsertIntoUsers(db, "Lucas", "l.l@gmail.com", Encoding_password("hello"))
-	InsertIntoUsers(db, "vanessa", "vanessa@gmail.com", Encoding_password("world"))
-	InsertIntoUsers(db, "com", "vane@gmail.com", Encoding_password("test"))
-	InsertIntoUsers(db, "com", "srvvane@gmail.com", Encoding_password("test"))
+	// InsertIntoUsers(db, "Mathieu", "m.m@gmail.com", Encoding_password("secret"))
+	// InsertIntoUsers(db, "Thomas", "t.t@gmail.com", Encoding_password("scret"))
+	// InsertIntoUsers(db, "Lucas", "l.l@gmail.com", Encoding_password("hello"))
+	// InsertIntoUsers(db, "vanessa", "vanessa@gmail.com", Encoding_password("world"))
+	// InsertIntoUsers(db, "com", "vane@gmail.com", Encoding_password("test"))
+	// InsertIntoUsers(db, "com", "srvvane@gmail.com", Encoding_password("test"))
 
-	// InsertIntoTopic(db, "test", "j fait un test", 0, 4, 1)
+	InsertIntoTopic(db, "test", "j fait un test", 0, 4)
 
-	// InsertIntoReponse(db, "je rep", 1, 6)
+	InsertIntoReponse(db, "je rep", 1, 6)
 
-	// InsertIntoLike(db, 2, 2)
-	// InsertIntoLike(db, 2, 2)
-	// InsertIntoLike(db, 2, 2)
+	fmt.Println("USER : ", Login(db, "vane@gmail.com", "test"))
 
-	// fmt.Println(Count(db, "likes", 1))
+	InsertIntoLike(db, 2, 2)
+	InsertIntoLike(db, 2, 2)
+	InsertIntoLike(db, 2, 2)
+
+	fmt.Println(Count(db, "likes", 1))
 
 	// topic := SelectArchiveFromTopic(db, 0)
 	// DisplayTopicRows(topic)
+	fmt.Println(SelectArchiveFromTopic(db, 1))
 	// rows := SelectAllFromTable(db, "users")
 	// DisplayUserRows(rows)
 
@@ -258,19 +255,18 @@ func DataBase() {
 	// user2 := SelectUserById(db, "topics", 5)
 	// fmt.Println(user2)
 
-	// fmt.Println("\n")
-	// fmt.Println("dataBase")
-	// rows := SelectAllFromTable(db, "topics")
-	// DisplayTopicRows(rows)
+	fmt.Println("\n")
+	fmt.Println("dataBase")
+	rows := SelectAllFromTable(db, "topics")
+	DisplayTopicRows(rows)
 
-	// fmt.Println("\n")
+	fmt.Println("\n")
 	fmt.Println("par ID")
-	user2 := SelectUserById(db, "users", 4)
+	user2 := SelectUserById(db, "name", 4)
 	fmt.Println(user2)
 
 	// UpDate(db, "users", "email", "nazi.super.MILF@gmail.con", 1)
 
-	fmt.Println("\n")
-	userTest := Login(db, "vanessa@gmail.com", "worl")
-	fmt.Println(userTest)
+	// fmt.Println("\n")
+	// fmt.Println("topics")
 }

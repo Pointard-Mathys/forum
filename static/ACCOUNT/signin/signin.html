@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/ACCOUNT/sign-in/stylesign.css">
+    <link rel="stylesheet" href="/static/ACCOUNT/signin/signin.css">
     <title>Création de compte</title>
 </head>
 
 <body>
     <div class="Login-wrapper"></div>
     <form action="/redirect-createaccount" class="Form" method="post">
-        <img src="/ASSETS/img/usericon.png" class="usericon">
+        <img src="/static/assets/usericon.png" class="usericon">
         <h2>Créez votre compte WYK</h2>
         <div class="Input-group">
-            <a href="../form/indexform.html" class="Close">&times;</a>
+            <a href="/signin" class="Close">&times;</a>
             <input type="name" name="CreateAccountName" id="CreateAccountName" minlength="1" size="30" required>
             <label for="loginUser" Username>Pseudonyme</label>
 

@@ -2,6 +2,7 @@ package forum
 
 import (
 	forum "forum/FORUM/DATABASE"
+	"html/template"
 	"net/http"
 )
 
@@ -10,6 +11,11 @@ type User struct {
 	Email             string
 	Password          string
 	ConfirmedPassword string
+}
+
+func SignInPage(w http.ResponseWriter, r *http.Request) {
+	var templates = template.Must(template.ParseFiles("././static/ACCOUNT/signin/signin.html", "././static/home/header.html"))
+	templates.Execute(w, nil)
 }
 
 func GetData() http.HandlerFunc {
@@ -25,6 +31,7 @@ func GetData() http.HandlerFunc {
 
 		} else if structure_uti.Password == structure_uti.ConfirmedPassword {
 			forum.InsertIntoUsers(db, structure_uti.Name, structure_uti.Email, forum.Encoding_password(structure_uti.Password))
+			http.Redirect(w, r, "/login", http.StatusFound)
 		}
 	}
 }
