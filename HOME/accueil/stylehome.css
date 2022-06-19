@@ -337,6 +337,7 @@ text-align: center;
 }
 
 .titlecard2 {
+  text-decoration: underline;
   padding-top: 15px;
   font-size: 1.3rem;
   color: #4B4B4B;

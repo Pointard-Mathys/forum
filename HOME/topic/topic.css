@@ -4,8 +4,9 @@
 }
 
 body {
-    background: #818181;
-    font-weight: bold;
+  background: rgb(158,150,67);
+  background: linear-gradient(90deg, rgba(158,150,67,0.7175245098039216) 13%, rgba(154,148,149,1) 57%, rgba(168,91,43,1) 100%);
+  font-weight: bold;
 }
 
 nav{
@@ -49,6 +50,11 @@ textarea {
     border-style: none;
     outline: none;
     border-radius: 5px;
+}
+
+.topics {
+    display: grid;
+    grid-gap: 3px;
 }
 
 .textarea2 {
