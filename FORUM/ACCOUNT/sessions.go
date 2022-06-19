@@ -19,7 +19,11 @@ var db *sql.DB
 // var store = sessions.NewCookieStore([]byte(os.Getenv("SESSION_KEY")))
 // don't store key in source code, pass in via a environment variable to avoid accidentally commit it with code
 // func NewCookieStore(keyPairs ...[]byte) *CookieStore
-var store = sessions.NewCookieStore([]byte("CEDRICTROPBEAU"))
+var Store = sessions.NewCookieStore([]byte("CEDRICTROPBEAU"))
+
+func GetStore(store *sessions.CookieStore) *sessions.CookieStore {
+	return store
+}
 
 // func main() {
 // 	tpl, _ = template.ParseGlob("templates/*.html")
@@ -42,7 +46,7 @@ var store = sessions.NewCookieStore([]byte("CEDRICTROPBEAU"))
 
 func LoginAuthHandler(w http.ResponseWriter, r *http.Request, BddID int, BddName string) {
 	fmt.Println("--------------loginAuth--------------")
-	session, _ := store.Get(r, "session")
+	session, _ := Store.Get(r, "session")
 	// CECI DOIT ETRE EGALE AU USER ID DE LA BDD C'EST LOGIQUE CONNARD
 	session.Values["userName"] = BddName
 	session.Values["userID"] = BddID
@@ -53,7 +57,7 @@ func LoginAuthHandler(w http.ResponseWriter, r *http.Request, BddID int, BddName
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("--------------INDEX--------------")
-	session, _ := store.Get(r, "session")
+	session, _ := Store.Get(r, "session")
 	// ICI ON VERIFIE QUE LE MEC EST BIEN LOG IN SINON ON RENVOIE SUR LA PAGE LOGIN C'EST PLUTOT SYMPA ("ok" EST UN BOOL)
 	_, ok := session.Values["userID"]
 	fmt.Println("ok:", ok)
@@ -66,7 +70,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("--------------ABOUT--------------")
-	session, _ := store.Get(r, "session")
+	session, _ := Store.Get(r, "session")
 	// ICI ON VERIFIE QUE LE MEC EST BIEN LOG IN SINON ON RENVOIE SUR LA PAGE LOGIN C'EST PLUTOT SYMPA ("ok" EST UN BOOL)
 	_, ok := session.Values["userID"]
 	fmt.Println("ok:", ok)
@@ -80,7 +84,7 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 // A VOIR COMMENT UTILISER CETTE MERDE J'AI ENVIE DE CREVER
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("--------------LOGOUT--------------")
-	session, _ := store.Get(r, "session")
+	session, _ := Store.Get(r, "session")
 	fmt.Println("ICI ON SUPPRIME")
 	fmt.Println(session.Values["userID"])
 	//SUPPRIME L'ID ACTUEL PUIS REFRESH LA SESSION

@@ -225,8 +225,8 @@ func SelectArchiveFromTopic(db *sql.DB, archive int) ([]Topic, error) {
 	return topics, nil
 }
 
-func SelectReponseFromTopic(db *sql.DB, id_topic int) ([]Reponse, error) {
-	pattern, err := db.Query("SELECT * FROM reponses WHERE id_topic =?", id_topic)
+func SelectReponseFromTopic(db *sql.DB) ([]Reponse, error) {
+	pattern, err := db.Query("SELECT * FROM reponses")
 	if err != nil {
 		log.Printf("ERR: %s\n", err)
 		return nil, err
@@ -235,7 +235,7 @@ func SelectReponseFromTopic(db *sql.DB, id_topic int) ([]Reponse, error) {
 	var reponses []Reponse
 	for pattern.Next() {
 		var reponse Reponse
-		if err := pattern.Scan(&reponse.Id, &reponse.TextContent, &reponse.Id_user, &reponse.Id_topic, &reponse.User_name); err != nil {
+		if err := pattern.Scan(&reponse.Id, &reponse.TextContent, &reponse.Id_user, &reponse.Id_topic); err != nil {
 			return reponses, err
 		}
 		reponses = append(reponses, reponse)

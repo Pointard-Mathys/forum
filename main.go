@@ -42,7 +42,7 @@ func testPage2(w http.ResponseWriter, r *http.Request) {
 func createApiRep(w http.ResponseWriter, r *http.Request) {
 	db := database.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
 
-	DbData, _ := database.SelectReponseFromTopic(db, 1)
+	DbData, _ := database.SelectReponseFromTopic(db)
 
 	fmt.Println("Réponses : ", DbData)
 

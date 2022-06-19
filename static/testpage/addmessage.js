@@ -63,6 +63,8 @@ export function printAPI(topic) {
         
         const submitButton = document.createElement("button")
         submitButton.classList.add("repondre")
+        submitButton.setAttribute("name", "idTopic")
+        submitButton.setAttribute("value", element.Id)
         submitButton.innerText = "Répondre"
         
         const rightPart = document.createElement("right")

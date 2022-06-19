@@ -12,8 +12,11 @@ export function getApi(URL) {
 }
 
 function printAPI(reponse) {
+    const messageList = document.getElementById("chat-thread")
+    const topicName = document.createElement("div")
+    topicName.innerText = "Topic N°"+""
+
     reponse.forEach(element => {
-        const messageList = document.getElementById("chat-thread")
 
         const pseudoContainer = document.createElement("div")
         pseudoContainer.classList.add("pseudo")

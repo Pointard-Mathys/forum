@@ -27,7 +27,7 @@ func GetDataLogin() http.HandlerFunc {
 		user := forum.Login(db, structure_utiLogin.Email, structure_utiLogin.Password)
 		//VERIFICATION D'OBJET VIDE
 		if user.Id >= 1 {
-			session, _ := store.Get(r, "session")
+			session, _ := Store.Get(r, "session")
 			// CECI DOIT ETRE EGALE AU USER ID DE LA BDD C'EST LOGIQUE CONNARD
 			session.Values["userName"] = user.Name
 			session.Values["userID"] = user.Id
