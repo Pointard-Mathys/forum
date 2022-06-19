@@ -67,6 +67,8 @@ func main() {
 	http.HandleFunc("/signin", account.SignInPage)
 	http.HandleFunc("/support", support.SupportPage)
 
+	http.HandleFunc("/create-topic", chat.TopicPage)
+
 	http.HandleFunc("/api-reponses", createApiRep)
 
 	http.HandleFunc("/redirect-login", account.GetDataLogin())

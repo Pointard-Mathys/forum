@@ -269,11 +269,11 @@ func DataBase() {
 	// InsertIntoUsers(db, "com", "vane@gmail.com", Encoding_password("test"))
 	// InsertIntoUsers(db, "com", "srvvane@gmail.com", Encoding_password("test"))
 
-	InsertIntoTopic(db, "test", "j fait un test", 0, 4)
+	// InsertIntoTopic(db, "test", "j fait un test", 0, 4)
 
-	InsertIntoReponse(db, "je rep", 5, 1)
+	// InsertIntoReponse(db, "je rep", 5, 1)
 
-	fmt.Println("USER : ", Login(db, "random.mail@mail.mail", "12345678"))
+	// fmt.Println("USER : ", Login(db, "random.mail@mail.mail", "12345678"))
 
 	InsertIntoLike(db, 2, 2)
 	InsertIntoLike(db, 2, 2)

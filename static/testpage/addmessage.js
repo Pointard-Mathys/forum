@@ -57,6 +57,9 @@ export function printAPI(topic) {
         
         const br = document.createElement("br")
         const hr = document.createElement("hr")
+
+        const a = document.createElement("a")
+        a.setAttribute("href", "/messages")
         
         const submitButton = document.createElement("button")
         submitButton.classList.add("repondre")
@@ -75,12 +78,14 @@ export function printAPI(topic) {
         
         
         //Ajout des éléments les uns dans les autres
+
+        a.appendChild(submitButton)
         
         leftPart.appendChild(userNameContainer)
         leftPart.appendChild(br)
         leftPart.appendChild(br)
         leftPart.appendChild(hr)
-        leftPart.appendChild(submitButton)
+        leftPart.appendChild(a)
         
         rightPart.appendChild(title)
         rightPart.appendChild(hr)
