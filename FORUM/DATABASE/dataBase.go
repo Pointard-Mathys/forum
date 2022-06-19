@@ -235,7 +235,7 @@ func SelectReponseFromTopic(db *sql.DB) ([]Reponse, error) {
 	var reponses []Reponse
 	for pattern.Next() {
 		var reponse Reponse
-		if err := pattern.Scan(&reponse.Id, &reponse.TextContent, &reponse.Id_user, &reponse.Id_topic); err != nil {
+		if err := pattern.Scan(&reponse.Id, &reponse.TextContent, &reponse.Id_topic, &reponse.Id_user, &reponse.User_name); err != nil {
 			return reponses, err
 		}
 		reponses = append(reponses, reponse)

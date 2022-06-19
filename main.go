@@ -44,7 +44,7 @@ func createApiRep(w http.ResponseWriter, r *http.Request) {
 
 	DbData, _ := database.SelectReponseFromTopic(db)
 
-	fmt.Println("Réponses : ", DbData)
+	// fmt.Println("Réponses : ", DbData)
 
 	data, _ := json.Marshal(DbData)
 	w.Write(data)
