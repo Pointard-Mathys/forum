@@ -39,6 +39,18 @@ func testPage2(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
+func createApiRep(w http.ResponseWriter, r *http.Request) {
+	db := database.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
+
+	DbData, _ := database.SelectReponseFromTopic(db, 1)
+
+	fmt.Println("Réponses : ", DbData)
+
+	data, _ := json.Marshal(DbData)
+	w.Write(data)
+	return
+}
+
 func main() {
 	database.DataBase()
 	fs := http.FileServer(http.Dir("static/"))
@@ -54,6 +66,8 @@ func main() {
 	http.HandleFunc("/login", account.ConnectionPage)
 	http.HandleFunc("/signin", account.SignInPage)
 	http.HandleFunc("/support", support.SupportPage)
+
+	http.HandleFunc("/api-reponses", createApiRep)
 
 	http.HandleFunc("/redirect-login", account.GetDataLogin())
 	http.HandleFunc("/redirect-createaccount", account.GetData())

@@ -31,6 +31,7 @@ type Reponse struct {
 	TextContent string
 	Id_user     int
 	Id_topic    int
+	User_name   string
 }
 
 type like struct {
@@ -70,7 +71,8 @@ func InitDatabase(database string) *sql.DB {
 		content TEXT NOT NULL,
 		id_topic INTEGER NOT NULL,
 		id_user INTEGER NOT NULL,
-		FOREIGN KEY(id_user) REFERENCES users(id)
+		user_name TEXT NOT NULL,
+		FOREIGN KEY(id_user) REFERENCES users(id),
 		FOREIGN KEY(id_topic) REFERENCES topics(id)
 	);
 	CREATE TABLE IF NOT EXISTS likes (
@@ -115,7 +117,8 @@ func InsertIntoTopic(db *sql.DB, titre string, contain string, nombre_rep int, i
 }
 
 func InsertIntoReponse(db *sql.DB, content string, id_topic int, id_user int) (int64, error) {
-	result, err := db.Exec(`INSERT INTO reponses (content, id_topic, id_user) VALUES (?, ?, ?)`, content, id_topic, id_user)
+	dbUsers := InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
+	result, err := db.Exec(`INSERT INTO reponses (content, id_topic, id_user, user_name) VALUES (?, ?, ?, ?)`, content, id_topic, id_user, SelectUserById(dbUsers, "users", id_user).Name)
 	if err != nil {
 		log.Printf("ERR: %s\n", err)
 		return -1, nil
@@ -157,6 +160,19 @@ func DisplayTopicRows(rows *sql.Rows) {
 		}
 		fmt.Println(topic)
 	}
+}
+
+func DisplayReponsesRows(rows *sql.Rows) []Reponse {
+	var reponses []Reponse
+	for rows.Next() {
+		var reponse Reponse
+		err := rows.Scan(&reponse.Id, &reponse.Id_topic, &reponse.Id_user, reponse.TextContent, reponse.User_name)
+		if err != nil {
+			log.Fatal(err)
+		}
+		reponses = append(reponses, reponse)
+	}
+	return reponses
 }
 
 func SelectUserById(db *sql.DB, option string, id int) User {
@@ -209,6 +225,27 @@ func SelectArchiveFromTopic(db *sql.DB, archive int) ([]Topic, error) {
 	return topics, nil
 }
 
+func SelectReponseFromTopic(db *sql.DB, id_topic int) ([]Reponse, error) {
+	pattern, err := db.Query("SELECT * FROM reponses WHERE id_topic =?", id_topic)
+	if err != nil {
+		log.Printf("ERR: %s\n", err)
+		return nil, err
+	}
+
+	var reponses []Reponse
+	for pattern.Next() {
+		var reponse Reponse
+		if err := pattern.Scan(&reponse.Id, &reponse.TextContent, &reponse.Id_user, &reponse.Id_topic, &reponse.User_name); err != nil {
+			return reponses, err
+		}
+		reponses = append(reponses, reponse)
+	}
+	if err = pattern.Err(); err != nil {
+		return reponses, err
+	}
+	return reponses, nil
+}
+
 func Login(db *sql.DB, email string, password string) User {
 	fmt.Println("---------------Login Function---------------")
 	var user User
@@ -234,9 +271,9 @@ func DataBase() {
 
 	InsertIntoTopic(db, "test", "j fait un test", 0, 4)
 
-	InsertIntoReponse(db, "je rep", 1, 6)
+	InsertIntoReponse(db, "je rep", 5, 1)
 
-	fmt.Println("USER : ", Login(db, "vane@gmail.com", "test"))
+	fmt.Println("USER : ", Login(db, "random.mail@mail.mail", "12345678"))
 
 	InsertIntoLike(db, 2, 2)
 	InsertIntoLike(db, 2, 2)

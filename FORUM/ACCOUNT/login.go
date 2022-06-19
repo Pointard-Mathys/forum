@@ -33,7 +33,7 @@ func GetDataLogin() http.HandlerFunc {
 			session.Values["userID"] = user.Id
 			// SAUVEGARDE DE LA SESSION
 			session.Save(r, w)
-			http.Redirect(w, r, "/mainpage", http.StatusFound)
+			http.Redirect(w, r, "/", http.StatusFound)
 		} else {
 			fmt.Println("CACA DANS LE CULCUL")
 		}
