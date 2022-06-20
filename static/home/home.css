@@ -679,3 +679,10 @@ span {
     color: #CC8EF5;
     font-weight: bold;
 }
+
+.pseudonyme {
+    text-decoration: none;
+    margin-right: auto;
+    color: wheat;
+    text-align: center;
+}
