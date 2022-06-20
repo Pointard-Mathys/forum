@@ -1,7 +1,6 @@
 package forum
 
 import (
-	"fmt"
 	forum "forum/FORUM/DATABASE"
 	"html/template"
 	"net/http"
@@ -14,6 +13,11 @@ type UserLogin struct {
 
 func ConnectionPage(w http.ResponseWriter, r *http.Request) {
 	var templates = template.Must(template.ParseFiles("././static/ACCOUNT/connection/connection.html", "././static/home/header.html"))
+
+	if r.FormValue("Wrongnoob") == "true" {
+		templates.Execute(w, struct{ Wrongnoob bool }{true})
+		return
+	}
 	templates.Execute(w, nil)
 }
 
@@ -36,7 +40,7 @@ func GetDataLogin() http.HandlerFunc {
 			session.Save(r, w)
 			http.Redirect(w, r, "/", http.StatusFound)
 		} else {
-			fmt.Println("CACA DANS LE CULCUL")
+			http.Redirect(w, r, "/login?Wrongnoob=true", 301)
 		}
 	}
 }

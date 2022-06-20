@@ -15,24 +15,26 @@
         <img src="/static/assets/usericon.png" class="usericon">
         <h2>Créez votre compte WYK</h2>
         <div class="Input-group">
-            <a href="/signin" class="Close">&times;</a>
+            <a href="/login" class="Close">&times;</a>
             <input type="name" name="CreateAccountName" id="CreateAccountName" minlength="1" size="30" required>
             <label for="loginUser" Username>Pseudonyme</label>
 
         </div>
 
         <div class="Input-group">
-            <input type="email" name="CreateAccountEmail" id="CreateAccountEmail" size="30" required>
+            <input name="CreateAccountEmail" id="CreateAccountEmail" minlength="1" size="30" required>
             <label for="loginUser" Email>E-mail</label>
         </div>
         <div class="Input-group">
-            <input type="password" name="CreateAccountPassword" id="CreateAccountPassword" minlength="8" size="30" required>
+            <input type="password" name="CreateAccountPassword" id="CreateAccountPassword" minlength="1" size="30" required>
             <label for="loginPassword" Password>Mot de passe</label>
         </div>
         <div class="Input-group">
-            <input type="password" name="CreateAccountPasswordConfirmed" id="CreateAccountPasswordConfirmed" minlength="8" size="30" required>
-            <label for="loginPassword" Password>Confirmation de votre mot de passe</label>
-            <input type="submit" value="Register" id="Register-button">
+            <input type="password" name="CreateAccountPasswordConfirmed" id="CreateAccountPasswordConfirmed" minlength="1" size="30" required>
+            <label for="loginPassword" Password>Confirmation du mot de passe</label>
+            <input type="submit" value="Register" id="Register-button"> {{if eq .Wrongnoob true}}
+            <p class="errors">Adresse Email deja utilisé ou mot de passe invalide</p>
+            {{end}}
         </div>
     </form>
 </body>

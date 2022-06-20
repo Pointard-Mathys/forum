@@ -15,6 +15,10 @@ type User struct {
 
 func SignInPage(w http.ResponseWriter, r *http.Request) {
 	var templates = template.Must(template.ParseFiles("././static/ACCOUNT/signin/signin.html", "././static/home/header.html"))
+	if r.FormValue("Wrongnoob") == "true" {
+		templates.Execute(w, struct{ Wrongnoob bool }{true})
+		return
+	}
 	templates.Execute(w, nil)
 }
 
@@ -28,7 +32,7 @@ func GetData() http.HandlerFunc {
 		structure_uti.ConfirmedPassword = r.FormValue("CreateAccountPasswordConfirmed")
 
 		if structure_uti.Password != structure_uti.ConfirmedPassword {
-
+			http.Redirect(w, r, "/signin?Wrongnoob=true", 301)
 		} else if structure_uti.Password == structure_uti.ConfirmedPassword {
 			forum.InsertIntoUsers(db, structure_uti.Name, structure_uti.Email, forum.Encoding_password(structure_uti.Password))
 			http.Redirect(w, r, "/login", http.StatusFound)

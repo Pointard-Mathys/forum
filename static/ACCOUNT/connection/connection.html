@@ -26,7 +26,9 @@
             </div>
             <input type="submit" value="Login" id="Login-button">
             <a href="#forgot-pswd" class="Forgot-pswd">Mot de passe oublié ?</a>
-            <a href="/signin" class="register">Pas encore de compte ? Cliquez ici !</a>
+            <a href="/signin" class="register">Pas encore de compte ? Cliquez ici !</a> {{if eq .Wrongnoob true}}
+            <p class="errors">Adresse E-mail ou mot de passe invalide</p>
+            {{end}}
         </form>
 
 
@@ -45,8 +47,8 @@
     </div>
 </body>
 
-        
-    <div id="forgot-pswd" class="Background-image">
+
+<div id="forgot-pswd" class="Background-image">
     <form action="" class="Form">
         <a href="#" class="Close">&times;</a>
         <h2>Reset Password</h2>
@@ -54,7 +56,7 @@
             <input type="email" name="email" id="email" required>
             <label for="email">Email</label>
         </div>
-    </div>
+</div>
 </body>
 
 </html>

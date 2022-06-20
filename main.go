@@ -5,6 +5,7 @@ import (
 	"fmt"
 	account "forum/FORUM/ACCOUNT"
 	database "forum/FORUM/DATABASE"
+	admin "forum/FORUM/admin"
 	mainpage "forum/FORUM/home"
 	chat "forum/FORUM/messages"
 	support "forum/FORUM/support"
@@ -61,11 +62,18 @@ func main() {
 
 	http.HandleFunc("/", mainpage.Mainpage)
 	http.HandleFunc("/messages", chat.Chat)
+
 	http.HandleFunc("/test", testPage)
 	http.HandleFunc("/test2", testPage2)
+
 	http.HandleFunc("/login", account.ConnectionPage)
 	http.HandleFunc("/signin", account.SignInPage)
+
 	http.HandleFunc("/support", support.SupportPage)
+
+	http.HandleFunc("/admin", admin.AdminHolder)
+	http.HandleFunc("/redirect-admin", admin.DeletID())
+	http.HandleFunc("/redirect-theme", admin.AddTheme())
 
 	http.HandleFunc("/create-topic", chat.TopicPage)
 
