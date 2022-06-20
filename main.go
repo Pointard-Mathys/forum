@@ -1,48 +1,78 @@
 package main
 
 import (
-	// connection "forum/FORUM/ACCOUNT/connection"
-
+	"encoding/json"
+	"fmt"
+	account "forum/FORUM/ACCOUNT"
 	database "forum/FORUM/DATABASE"
-	mainpage "forum/FORUM/mainpage"
+	mainpage "forum/FORUM/home"
+	chat "forum/FORUM/messages"
+	support "forum/FORUM/support"
 	"net/http"
+	"regexp"
+
+	"github.com/robfig/cron/v3"
 )
 
-// func ConnectionPage(w http.ResponseWriter, r http.Request) {
-// 	http.ServeFile(w, r, "static/ACCOUNT/form/indexform.html")
-// }
+func testPage(w http.ResponseWriter, r *http.Request) {
+	db := database.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
+	name := r.FormValue("message")
 
-// func CreateAccountPage(w http.ResponseWriter, rhttp.Request) {
-// 	http.ServeFile(w, r, "static/ACCOUNT/sign-in/indexsign.html")
-// }
+	isNotEmptyOrBlank := regexp.MustCompile(`\S`)
+	if name != "" && isNotEmptyOrBlank.MatchString(name) {
+		database.InsertIntoTopic(db, "Titre", name, 36, 4)
+	}
 
-// func testPage(w http.ResponseWriter, r *http.Request) {
-// 	db := database.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
-// 	name := r.FormValue("message")
+	http.ServeFile(w, r, "static/testpage/testpage.html")
+}
 
-// 	isNotEmptyOrBlank := regexp.MustCompile(`\S`)
-// 	if name != "" && isNotEmptyOrBlank.MatchString(name) {
-// 		// database.InsertIntoTopic(db, "Titre", name, 36, 4)
-// 	}
-// 	http.ServeFile(w, r, "static/testpage/testpage.html")
-// }
+func testPage2(w http.ResponseWriter, r *http.Request) {
+	db := database.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
+
+	DbData, err := database.SelectArchiveFromTopic(db, 0)
+
+	if err != nil {
+		fmt.Println("Error loading DB : ", err)
+	}
+	data, _ := json.Marshal(DbData)
+	w.Write(data)
+	return
+}
+
+func createApiRep(w http.ResponseWriter, r *http.Request) {
+	db := database.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
+
+	DbData, _ := database.SelectReponseFromTopic(db)
+
+	// fmt.Println("Réponses : ", DbData)
+
+	data, _ := json.Marshal(DbData)
+	w.Write(data)
+	return
+}
 
 func main() {
 	database.DataBase()
 	fs := http.FileServer(http.Dir("static/"))
 
-	http.HandleFunc("/", mainpage.Mainpage())
-	// http.HandleFunc("/test", testPage)
+	c := cron.New()
+	c.AddFunc("18 * * * *", func() { fmt.Println("Poogie is love, Poogie is life") })
+	c.Start()
 
-	// http.HandleFunc("/redirect-login", account.GetData())
-	// http.HandleFunc("/redirect-createaccount", account.GetData())
+	http.HandleFunc("/", mainpage.Mainpage)
+	http.HandleFunc("/messages", chat.Chat)
+	http.HandleFunc("/test", testPage)
+	http.HandleFunc("/test2", testPage2)
+	http.HandleFunc("/login", account.ConnectionPage)
+	http.HandleFunc("/signin", account.SignInPage)
+	http.HandleFunc("/support", support.SupportPage)
 
-	// http.HandleFunc("/create-account", CreateAccountPage)
-	// http.HandleFunc("/connection", ConnectionPage)
+	http.HandleFunc("/create-topic", chat.TopicPage)
 
-	// http.HandleFunc("/connection", connection.ConnectionPage())
-	// http.HandleFunc("/login", login())
-	// http.HandleFunc("/create-account", createAccount())
+	http.HandleFunc("/api-reponses", createApiRep)
+
+	http.HandleFunc("/redirect-login", account.GetDataLogin())
+	http.HandleFunc("/redirect-createaccount", account.GetData())
 	//------------------------------------------------------------------
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.ListenAndServe(":8080", nil)

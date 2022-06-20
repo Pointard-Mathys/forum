@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/ACCOUNT/form/styleform.css">
+    <link rel="stylesheet" href="/static/ACCOUNT/connection/connection.css">
 
     <title>Connection</title>
 </head>
@@ -14,11 +14,11 @@
 
     <div class="Login-wrapper">
         <form action="/redirect-login" class="Form" method="post">
-            <img src="/ASSETS/img/usericon.png" class="usericon">
+            <img src="/static/assets/usericon.png" class="usericon">
             <h2>Connection</h2>
             <div class="Input-group">
-                <input type="text" name="loginUser" id="loginUser" required>
-                <label for="loginUser" User Name>Pseudonyme / E-mail</label>
+                <input type="email" name="loginEmail" id="loginUser" required>
+                <label for="loginUser" User Name>E-mail</label>
             </div>
             <div class="Input-group">
                 <input type="password" name="loginPassword" id="loginPassword" required>
@@ -26,7 +26,7 @@
             </div>
             <input type="submit" value="Login" id="Login-button">
             <a href="#forgot-pswd" class="Forgot-pswd">Mot de passe oublié ?</a>
-            <a href="/CONNEXION/sign-in/indexsign.html" class="register">Pas encore de compte ? Cliquez ici !</a>
+            <a href="/signin" class="register">Pas encore de compte ? Cliquez ici !</a>
         </form>
 
 
@@ -41,6 +41,18 @@
 
                 <input type="submit" value="Submit" id="Submit-button">
 
+        </div>
+    </div>
+</body>
+
+        
+    <div id="forgot-pswd" class="Background-image">
+    <form action="" class="Form">
+        <a href="#" class="Close">&times;</a>
+        <h2>Reset Password</h2>
+        <div class="Input-group">
+            <input type="email" name="email" id="email" required>
+            <label for="email">Email</label>
         </div>
     </div>
 </body>

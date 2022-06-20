@@ -1,7 +1,8 @@
 package forum
 
 import (
-	"fmt"
+	forum "forum/FORUM/DATABASE"
+	"html/template"
 	"net/http"
 )
 
@@ -12,20 +13,25 @@ type User struct {
 	ConfirmedPassword string
 }
 
+func SignInPage(w http.ResponseWriter, r *http.Request) {
+	var templates = template.Must(template.ParseFiles("././static/ACCOUNT/signin/signin.html", "././static/home/header.html"))
+	templates.Execute(w, nil)
+}
+
 func GetData() http.HandlerFunc {
+	db := forum.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
 	return func(w http.ResponseWriter, r *http.Request) {
 		var structure_uti User
-		fmt.Println("ICI")
 		structure_uti.Name = r.FormValue("CreateAccountName")
 		structure_uti.Email = r.FormValue("CreateAccountEmail")
 		structure_uti.Password = r.FormValue("CreateAccountPassword")
 		structure_uti.ConfirmedPassword = r.FormValue("CreateAccountPasswordConfirmed")
+
 		if structure_uti.Password != structure_uti.ConfirmedPassword {
-			http.Redirect(w, r, "/create-account?wrong2pass=true", 301)
+
+		} else if structure_uti.Password == structure_uti.ConfirmedPassword {
+			forum.InsertIntoUsers(db, structure_uti.Name, structure_uti.Email, forum.Encoding_password(structure_uti.Password))
+			http.Redirect(w, r, "/login", http.StatusFound)
 		}
-		fmt.Println(structure_uti.Name)
-		fmt.Println(structure_uti.Email)
-		fmt.Println(structure_uti.Password)
-		fmt.Println(structure_uti.ConfirmedPassword)
 	}
 }
