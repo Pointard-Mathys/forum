@@ -210,7 +210,6 @@ span.s1 {
     overflow: hidden;
   }
 
-
 .cardleft {
   position: relative;
   background-color: #FFF;
@@ -626,4 +625,8 @@ svg #main-circ {
   color: white;
   transition: 1s;
   border-radius: 10px;
+}
+
+#bar {
+  margin-right: auto;
 }

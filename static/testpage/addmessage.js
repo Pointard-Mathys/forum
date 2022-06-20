@@ -1,6 +1,7 @@
 const URL = "/test2"
 
 export let tmp 
+export let topicID
 // export const responseMessages = topic => {
 //     console.log("Topic :", topic);
 //     return topic
@@ -38,6 +39,8 @@ export function printAPI(topic) {
     console.log("Topic : ", topic[0].User_Name);
     topic.forEach(element => {
         //Création des éléments, attribution des classes, id, et du texte contenu le cas échéant
+        topicID = element.Id
+        console.log("Page addmessage : ", topicID);
 
         const mainContainer = document.getElementById("topic-container")
         
@@ -57,10 +60,17 @@ export function printAPI(topic) {
         
         const br = document.createElement("br")
         const hr = document.createElement("hr")
+
+        const a = document.createElement("a")
+        a.setAttribute("href", "/messages?topicId="+ element.Id)
         
         const submitButton = document.createElement("button")
         submitButton.classList.add("repondre")
+        submitButton.setAttribute("name", "idTopic")
+        submitButton.setAttribute("value", element.Id)
         submitButton.innerText = "Répondre"
+        console.log("ID : ", element.Id, element.Contain);
+        submitButton.addEventListener("click", localStorage.setItem('Data', element.Id))
         
         const rightPart = document.createElement("right")
         rightPart.classList.add("right")
@@ -75,12 +85,14 @@ export function printAPI(topic) {
         
         
         //Ajout des éléments les uns dans les autres
+
+        a.appendChild(submitButton)
         
         leftPart.appendChild(userNameContainer)
         leftPart.appendChild(br)
         leftPart.appendChild(br)
         leftPart.appendChild(hr)
-        leftPart.appendChild(submitButton)
+        leftPart.appendChild(a)
         
         rightPart.appendChild(title)
         rightPart.appendChild(hr)
@@ -90,12 +102,6 @@ export function printAPI(topic) {
         card.appendChild(rightPart)
         
         divContent.appendChild(card)
-        
-        mainContainer.appendChild(divContent)
-        
-        
-        
-        
         
         mainContainer.appendChild(divContent)
     });

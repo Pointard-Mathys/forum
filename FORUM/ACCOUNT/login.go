@@ -27,13 +27,14 @@ func GetDataLogin() http.HandlerFunc {
 		user := forum.Login(db, structure_utiLogin.Email, structure_utiLogin.Password)
 		//VERIFICATION D'OBJET VIDE
 		if user.Id >= 1 {
-			session, _ := store.Get(r, "session")
+			session, _ := Store.Get(r, "session")
 			// CECI DOIT ETRE EGALE AU USER ID DE LA BDD C'EST LOGIQUE CONNARD
+			session.Values["Connected?"] = true
 			session.Values["userName"] = user.Name
 			session.Values["userID"] = user.Id
 			// SAUVEGARDE DE LA SESSION
 			session.Save(r, w)
-			http.Redirect(w, r, "/mainpage", http.StatusFound)
+			http.Redirect(w, r, "/", http.StatusFound)
 		} else {
 			fmt.Println("CACA DANS LE CULCUL")
 		}
