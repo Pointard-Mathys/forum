@@ -62,7 +62,7 @@ export function printAPI(topic) {
         const hr = document.createElement("hr")
 
         const a = document.createElement("a")
-        a.setAttribute("href", "/messages")
+        a.setAttribute("href", "/messages?topicId="+ element.Id)
         
         const submitButton = document.createElement("button")
         submitButton.classList.add("repondre")
@@ -70,7 +70,7 @@ export function printAPI(topic) {
         submitButton.setAttribute("value", element.Id)
         submitButton.innerText = "Répondre"
         console.log("ID : ", element.Id, element.Contain);
-        // submitButton.addEventListener("click", localStorage.setItem('Data', element.Id))
+        submitButton.addEventListener("click", localStorage.setItem('Data', element.Id))
         
         const rightPart = document.createElement("right")
         rightPart.classList.add("right")

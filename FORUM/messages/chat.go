@@ -23,7 +23,7 @@ func Chat(w http.ResponseWriter, r *http.Request) {
 		sessions.Values["topicID"] = topicId
 		sessions.Save(r, w)
 	}
-	fmt.Println("sessions.Values Topic : ", sessions.Values["topicID"])
+	fmt.Println("\n\nsessions.Values Topic : ", sessions.Values["topicID"])
 	fmt.Println("sessions.Values User : ", sessions.Values["userID"])
 	fmt.Println("sessions.Values User name : ", sessions.Values["userName"])
 	isNotEmptyOrBlank := regexp.MustCompile(`\S`)

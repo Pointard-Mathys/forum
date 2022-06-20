@@ -17,7 +17,11 @@ function printAPI(reponse) {
     reponse.forEach(element => {
         // console.log("Page chat : ", topicID);
         console.log("element.Id_topic : ", element.Id_topic, element.TextContent);
-        if (element.Id_topic == 44) {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const topicId = urlParams.get("topicId") 
+        console.log("topicId : ", topicId);
+        if (element.Id_topic == topicId) {
             const pseudoContainer = document.createElement("div")
             pseudoContainer.classList.add("pseudo")
             pseudoContainer.innerText = element.User_name
