@@ -40,6 +40,11 @@ type like struct {
 	Id_reponse int
 }
 
+type Theme struct {
+	Id    int
+	Theme string
+}
+
 func InitDatabase(database string) *sql.DB {
 	db, err := sql.Open("sqlite3", database)
 	if err != nil {
@@ -72,6 +77,7 @@ func InitDatabase(database string) *sql.DB {
 		id_topic INTEGER NOT NULL,
 		id_user INTEGER NOT NULL,
 		user_name TEXT NOT NULL,
+		archive INTEGER NOT NULL,
 		FOREIGN KEY(id_user) REFERENCES users(id),
 		FOREIGN KEY(id_topic) REFERENCES topics(id)
 	);
@@ -81,6 +87,10 @@ func InitDatabase(database string) *sql.DB {
 		id_user TEXT NOT NULL,
 		FOREIGN KEY(id_user) REFERENCES users(id)
 		FOREIGN KEY(id_reponse) REFERENCES reponses(id)
+	);
+	CREATE TABLE IF NOT EXISTS themes (
+		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+		theme TEXT NOT NULL UNIQUE
 	)
 	`
 	_, err = db.Exec(sqlStmt)
@@ -135,6 +145,15 @@ func InsertIntoLike(db *sql.DB, id_reponse int, id_user int) (int64, error) {
 	return result.LastInsertId()
 }
 
+func InsertIntoTheme(db *sql.DB, theme string) (int64, error) {
+	result, err := db.Exec(`INSERT INTO themes (theme) VALUES (?)`, theme)
+	if err != nil {
+		log.Printf("ERR: %s\n", err)
+		return -1, nil
+	}
+	return result.LastInsertId()
+}
+
 func Encoding_password(a string) string {
 	b := base32.StdEncoding.EncodeToString([]byte(a))
 	return string(b)
@@ -175,6 +194,15 @@ func DisplayReponsesRows(rows *sql.Rows) []Reponse {
 	return reponses
 }
 
+func SelectThemeById(db *sql.DB, id int) (Theme, error) {
+	var theme Theme
+	if err := db.QueryRow("SELECT * FROM themes WHERE id = ?", id).Scan(&theme.Id, &theme.Theme); err != nil {
+		return theme, err
+	}
+
+	return theme, nil
+}
+
 func SelectUserById(db *sql.DB, option string, id int) User {
 	var user User
 	db.QueryRow("SELECT * FROM "+option+" WHERE id = ?", id).Scan(&user.Id, &user.Name, &user.Email, &user.Password)
@@ -188,15 +216,20 @@ func SelectPattern(db *sql.DB, option string, recherche string) *sql.Rows {
 }
 
 func DeleteUsersById(db *sql.DB, table string, id int) {
+	fmt.Println("je suis dans la databse")
+	fmt.Println("table : ", table)
+	fmt.Println("ID : ", id)
 	db.Exec("DELETE FROM "+table+" WHERE id = ?", id)
 }
 
-func UpDate(db *sql.DB, option string, jacklyne string, new string, id int) {
-	if jacklyne != "id" {
-		db.Exec("UPDATE "+option+" SET "+jacklyne+" = "+"'"+new+"'"+" WHERE id = ?;", id)
+//----------------------------------
+func UpDate(db *sql.DB, table string, optionEdited string, new string, id int) {
+	if optionEdited != "id" {
+		db.Exec("UPDATE "+table+" SET "+optionEdited+" = "+"'"+new+"'"+" WHERE id = ?;", id)
 	}
 }
 
+//---------------------------------
 func Count(db *sql.DB, table string, id_reponse int) int {
 	var n int
 	result := db.QueryRow("SELECT COUNT(*) FROM "+table+" WHERE id_reponse = ?", id_reponse)
@@ -225,6 +258,11 @@ func SelectArchiveFromTopic(db *sql.DB, archive int) ([]Topic, error) {
 	return topics, nil
 }
 
+func Archive(db *sql.DB) {
+	db.Exec("UPDATE topics SET archive = archive + 1")
+	db.Exec("UPDATE reponses SET archive = archive + 1")
+}
+
 func SelectReponseFromTopic(db *sql.DB) ([]Reponse, error) {
 	pattern, err := db.Query("SELECT * FROM reponses")
 	if err != nil {
@@ -244,6 +282,27 @@ func SelectReponseFromTopic(db *sql.DB) ([]Reponse, error) {
 		return reponses, err
 	}
 	return reponses, nil
+}
+
+func SelectThemes(db *sql.DB) ([]Theme, error) {
+	pattern, err := db.Query("SELECT * FROM themes")
+	if err != nil {
+		log.Printf("ERR: %s\n", err)
+		return nil, err
+	}
+
+	var themes []Theme
+	for pattern.Next() {
+		var theme Theme
+		if err := pattern.Scan(&theme.Id, &theme.Theme); err != nil {
+			return themes, err
+		}
+		themes = append(themes, theme)
+	}
+	if err = pattern.Err(); err != nil {
+		return themes, err
+	}
+	return themes, nil
 }
 
 func Login(db *sql.DB, email string, password string) User {
@@ -306,4 +365,9 @@ func DataBase() {
 
 	// fmt.Println("\n")
 	// fmt.Println("topics")
+	InsertIntoTheme(db, "bikini")
+	InsertIntoTheme(db, "pilon")
+	InsertIntoTheme(db, "portugai")
+	fmt.Println(SelectThemes(db))
+
 }

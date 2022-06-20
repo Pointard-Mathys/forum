@@ -1,0 +1,35 @@
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+nav h1 {
+    color: #717171;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+
+nav .onglets {
+    margin-bottom: 0.5%;
+}
+
+nav .onglets a {
+    text-decoration: none;
+    color: wheat;
+    margin-right: 10px;
+    border-bottom: 1px solid wheat;
+    padding-bottom: 5px;
+}
+
+#logo {
+    max-width: 8vh;
+    padding: 10px;
+    position: relative;
+    margin-right: auto;
+}
+
+#bar {
+    margin-right: auto;
+}

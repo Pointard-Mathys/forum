@@ -15,12 +15,6 @@ func Chat(w http.ResponseWriter, r *http.Request) {
 	session := session.Store
 	sessions, _ := session.Get(r, "session")
 	userID := 0
-	// _, ok := sessions.Values["userID"]
-	// fmt.Println("ok:", ok)
-	// if !ok {
-	// 	http.Redirect(w, r, "/login", http.StatusFound) // http.StatusFound is 302
-	// 	return
-	// }
 	if sessions.Values["Connected?"] == true {
 		userID = sessions.Values["userID"].(int)
 		fmt.Println(userID)

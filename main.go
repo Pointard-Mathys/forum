@@ -57,7 +57,7 @@ func main() {
 	fs := http.FileServer(http.Dir("static/"))
 
 	c := cron.New()
-	c.AddFunc("18 * * * *", func() { fmt.Println("Poogie is love, Poogie is life") })
+	c.AddFunc("39 * * * *", func() { mainpage.Name_theme.Theme = mainpage.GetWeeklyTheme() })
 	c.Start()
 
 	http.HandleFunc("/", mainpage.Mainpage)

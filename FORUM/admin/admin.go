@@ -3,8 +3,10 @@ package forum
 import (
 	"fmt"
 	session "forum/FORUM/ACCOUNT"
+	forum "forum/FORUM/DATABASE"
 	"html/template"
 	"net/http"
+	"strconv"
 )
 
 func AdminHolder(w http.ResponseWriter, r *http.Request) {
@@ -19,11 +21,25 @@ func AdminHolder(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeletID() http.HandlerFunc {
+	db := forum.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
 	return func(w http.ResponseWriter, r *http.Request) {
 		IdToDelet := r.FormValue("IdToDelet")
+		NewIdToDelet, _ := strconv.Atoi(IdToDelet)
 		IDtype := r.FormValue("IDtype")
-		fmt.Println(IdToDelet)
+		fmt.Println(NewIdToDelet)
 		fmt.Println(IDtype)
+		if IDtype == "utilisateur" {
+			fmt.Println("Bannissement de l'utilisateur")
+			forum.UpDate(db, "users", "password", "", NewIdToDelet)
+		}
+		if IDtype == "topic" {
+			fmt.Println("Suppression du Topic")
+			forum.DeleteUsersById(db, "topics", NewIdToDelet)
+		}
+		if IDtype == "reponse" {
+			fmt.Println("Suppression de la reponse")
+			forum.UpDate(db, "reponses", "content", "This Response has been deleted", NewIdToDelet)
+		}
 		http.Redirect(w, r, "/admin", http.StatusFound)
 	}
 }
