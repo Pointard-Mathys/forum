@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/static/assets/wYk_logo.svg">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/create-topic/create-topic.css">
+    <title>Topic de légende</title>
+</head>
+<body>
+    {{template "Header" .}}
+        <form action="/create-topic" class="topics" method="post">
+            <textarea class="textarea2" name="title" id="" cols="30" rows="10" maxlength="100" placeholder="Titre" required></textarea>
+            <textarea name="description" id="" cols="30" rows="10" maxlength="100" placeholder="Description" required></textarea>
+            <button type="submit" class="btn btn10">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <h4>Poster</h4>
+            </button>
+        </form>
+
+            
+</body>
+</html>

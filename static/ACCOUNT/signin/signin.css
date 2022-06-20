@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #171d22;
+    background-size: cover;
+    font-family: consolas;
+}
+
+nav h1{
+    color: #717171;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+nav .onglets{
+    padding: 10px;
+    z-index: 50;
+}
+nav .onglets a{
+    text-decoration: none;
+    color: #2196f3;
+    margin-right: 10px;
+    border-bottom: 1px solid #2196f3;
+    padding-bottom: 5px;
+    font-size: 17px;
+}
+
+.Form {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    padding: 80px 80px 85px;
+    margin: auto;
+    background: #171d22;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 15px 25px #171d22;
+}
+
+@media screen and (max-width: 650px) {
+    .Form {
+    position: relative;
+    max-width: 180px;
+    width: 100%;
+    padding: 75px 80px 40px;
+    margin: auto;
+    background: #171d22;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 15px 25px #171d22;
+    }
+    .Login-wrapper {
+        height: 60px !important;
+    }
+}
+
+.Login-wrapper {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Form:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255, 0.08);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.Form img {
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+    width: 100px;
+    background: rgba(255,255,255, 0.8);
+    border-radius: 50%;
+}
+
+.Form h2 {
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    color: #2196f3;
+}
+
+.Form .Input-group {
+    position: relative;
+}
+
+.Form .Input-group input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+}
+.Form .Input-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1px 0;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .3s ease-out;
+}
+
+.Form .Input-group input:focus + label,
+.Form .Input-group input:valid + label { 
+    transform: translateY(-18px); 
+    color: #2196f3;
+    font-size: .8rem;
+} 
+
+#Register-button {
+    color:black;
+    display: block;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    background: #2196f3;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+}
+
+@media screen and (max-width: 220px) {
+    #Register-button {
+    position: relative !important;
+    }
+
+}
+
+#Register-button:hover{
+    color: white;
+}
+
+.Close {
+    position: absolute;
+    right: -3rem;
+    top: -4rem;
+    font-size: 2rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: inherit;
+}   
+
+.errors {   
+    color: red !important;
+    font-size: small;
+}
