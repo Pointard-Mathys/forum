@@ -19,7 +19,7 @@ function printAPI(reponse) {
         console.log("element.Id_topic : ", element.Id_topic, element.TextContent);
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const topicId = urlParams.get("topicId") 
+        const topicId = urlParams.get("topicId")
         console.log("topicId : ", topicId);
         if (element.Id_topic == topicId) {
             const pseudoContainer = document.createElement("div")
