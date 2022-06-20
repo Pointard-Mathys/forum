@@ -1,8 +1,9 @@
-module forum
+module gopls-workspace
 
-go 1.17
+go 1.12
 
-require (
-	github.com/mattn/go-sqlite3 v1.14.13 // indirect
-	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
-)
+require gopls-workspace v1.9999999.0-goplsworkspace
+
+replace gopls-workspace => /home/mathys/forum
+
+replace forum => /home/mathys/forum
