@@ -34,7 +34,7 @@ func DeletID() http.HandlerFunc {
 		}
 		if IDtype == "topic" {
 			fmt.Println("Suppression du Topic")
-			forum.DeleteUsersById(db, "topics", NewIdToDelet)
+			forum.ArchiveSpecificTopic(db, NewIdToDelet)
 		}
 		if IDtype == "reponse" {
 			fmt.Println("Suppression de la reponse")

@@ -216,10 +216,7 @@ func SelectPattern(db *sql.DB, option string, recherche string) *sql.Rows {
 }
 
 func DeleteUsersById(db *sql.DB, table string, id int) {
-	fmt.Println("je suis dans la databse")
-	fmt.Println("table : ", table)
-	fmt.Println("ID : ", id)
-	db.Exec("DELETE FROM "+table+" WHERE id = ?", id)
+	db.Exec("DELETE FROM "+table+" WHERE id = ?;", id)
 }
 
 //----------------------------------
@@ -261,6 +258,10 @@ func SelectArchiveFromTopic(db *sql.DB, archive int) ([]Topic, error) {
 func Archive(db *sql.DB) {
 	db.Exec("UPDATE topics SET archive = archive + 1")
 	db.Exec("UPDATE reponses SET archive = archive + 1")
+}
+
+func ArchiveSpecificTopic(db *sql.DB, id int) {
+	db.Exec("UPDATE topics SET archive = archive + 1 WHERE id = ?", id)
 }
 
 func SelectReponseFromTopic(db *sql.DB) ([]Reponse, error) {

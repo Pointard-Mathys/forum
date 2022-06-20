@@ -29,7 +29,11 @@ function printAPI(reponse) {
             messageList.appendChild(messageContainer)
         }
     });
+    const pageBottom = document.createElement("p")
+    pageBottom.setAttribute("id", "page-bottom")
+    messageList.appendChild(pageBottom)
 
+    pageBottom.scrollIntoView();
 }
 
 getApi(URL)
