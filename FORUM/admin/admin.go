@@ -45,10 +45,12 @@ func DeletID() http.HandlerFunc {
 }
 
 func AddTheme() http.HandlerFunc {
+	db := forum.InitDatabase("FORUM/DATABASE/databaseHolder/DATA_BASE.db")
 	return func(w http.ResponseWriter, r *http.Request) {
 		Theme := r.FormValue("Theme")
 		fmt.Println("ici")
 		fmt.Println(Theme)
+		forum.InsertIntoTheme(db, Theme)
 		http.Redirect(w, r, "/admin", http.StatusFound)
 	}
 }
