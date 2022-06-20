@@ -3,9 +3,12 @@ body {
   background-size: cover;
   font-family: consolas;
 }
+
+@media only screen  {
+ 
+}
 .Login-wrapper {
   height: 95vh;
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,8 +19,8 @@ body {
   left: 10%;
   bottom: 25%;
   width: 100%;
-  max-width: 280px;
-  padding: 126px 226px 132px;
+  max-width: 290px;
+  padding: 278px 256px 198px;
   background: #171d22;
   border-radius: 10px;
   color: white;
@@ -50,7 +53,7 @@ body {
   margin-bottom: 2rem;
   color: #2196f3;
   position: relative;
-  margin-top:-20%;
+  margin-top: -70%;
 }
 
 .Form .Input-group {
@@ -127,7 +130,7 @@ body {
   margin-top:0px;
   
 }
-header{
+footer{
   height: 50px;
   margin: 20px;
   position: absolute;
@@ -135,9 +138,15 @@ header{
   left:15px;
 }
 
-.Header {
+.Footer {
   margin-top:20px;
   position: absolute;
   bottom: 0px;
   right: 15px;
+}
+
+.Input-group{
+  display:grid;
+  grid-gap:58px ;
+  font-size: 20px;
 }
