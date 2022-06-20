@@ -1,0 +1,142 @@
+body {
+  background: #171d22;
+  background-size: cover;
+  font-family: consolas;
+}
+
+.Form {
+  position: absolute;
+  left: 10%;
+  bottom: 25%;
+  width: 100%;
+  max-width: 290px;
+  padding: 278px 256px 198px;
+  background: #171d22;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 15px 25px #171d22;
+}
+.Form:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255, 0.08);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.Form img {
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  width: 100px;
+  background: rgba(255,255,255, 0.8);
+  border-radius: 50%;
+}
+
+.Form h2 {
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  color: #2196f3;
+  position: relative;
+  margin-top: -70%;
+}
+
+.Form .Input-group {
+  position: relative;
+  left:-70%;
+
+}
+
+.Form .Input-group input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+}
+.Form .Input-group label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1px 0;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: .3s ease-out;
+}
+
+.Form .Input-group input:focus + label,
+.Form .Input-group input:valid + label { 
+  transform: translateY(-18px); 
+  color: #2196f3;
+  font-size: .8rem;
+} 
+
+#Register-button {
+  color:black;
+  display: block;
+  margin-left: auto;
+  border: none;
+  outline: none;
+  background: #2196f3;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 120%;
+  left:25%;
+  height:50%;
+  width: 50%;
+}
+
+#Register-button:hover{
+  color: white;
+}
+
+.Close {
+  position: absolute;
+  right: -3rem;
+  top: -4rem;
+  font-size: 2rem;
+  font-weight: 900;
+  text-decoration: none;
+  color: inherit;
+} 
+
+.fa-arrow-left-long{
+  color:white;
+  font-size: 40px;
+  margin-left:30px;
+  margin-top:0px;
+  
+}
+footer{
+  height: 50px;
+  margin: 20px;
+  position: absolute;
+  bottom: 0px;
+  left:15px;
+}
+
+.Footer {
+  margin-top:20px;
+  position: absolute;
+  bottom: 0px;
+  right: 15px;
+}
+
+.Input-group{
+  display:grid;
+  grid-gap:58px ;
+  font-size: 20px;
+}
