@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: grid;
+    grid-template-areas: 
+    "header header header"
+    "nav middle ads"
+    "nav footer footer";
+
+    grid-template-columns: 2fr 8fr 2fr;
+    grid-template-rows: 1fr 9fr 2fr;
+    grid-gap: 10px;
+    height: 100vh;
+}
+
+#container > div {
+    background-color: red;
+}
+
+#test {
+    position: relative;
+    grid-area: middle;
+}
+
+#absolute {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 10%;
+    background: green;
+    aspect-ratio: 1/1;
+}
+
+.nav {
+    grid-area: nav;
+    background: pink !important;
+}
+
+.header {
+    grid-area: header;
+    background: yellow !important;
+}
+
+.footer {
+    grid-area: footer;
+    background: gold !important;
+}

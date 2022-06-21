@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/ACCOUNT/signin/signin.css">
+    <title>Création de compte</title>
+</head>
+
+<body>
+    <div class="Login-wrapper"></div>
+    <form action="/redirect-createaccount" class="Form" method="post">
+        <img src="/static/assets/usericon.png" class="usericon">
+        <h2>Créez votre compte WYK</h2>
+        <div class="Input-group">
+            <a href="/login" class="Close">&times;</a>
+            <input type="name" name="CreateAccountName" id="CreateAccountName" minlength="1" size="30" required>
+            <label for="loginUser" Username>Pseudonyme</label>
+
+        </div>
+
+        <div class="Input-group">
+            <input name="CreateAccountEmail" id="CreateAccountEmail" minlength="1" size="30" required>
+            <label for="loginUser" Email>E-mail</label>
+        </div>
+        <div class="Input-group">
+            <input type="password" name="CreateAccountPassword" id="CreateAccountPassword" minlength="1" size="30" required>
+            <label for="loginPassword" Password>Mot de passe</label>
+        </div>
+        <div class="Input-group">
+            <input type="password" name="CreateAccountPasswordConfirmed" id="CreateAccountPasswordConfirmed" minlength="1" size="30" required>
+            <label for="loginPassword" Password>Confirmation du mot de passe</label>
+            <input type="submit" value="Enregistrement" id="Register-button"> {{if eq .Wrongnoob true}}
+            <p class="errors">Adresse Email déjà utilisé ou mot de passe invalide</p>
+            {{end}}
+        </div>
+    </form>
+</body>
+
+</html>

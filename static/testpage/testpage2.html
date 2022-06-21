@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MINI API</title>
+        <link href="/static/index.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="container">
+            <h1 class="nav">mini api</h1>
+            <div class="header"></div>
+            <div class="header"></div>
+            <div id="test">
+                <div id="absolute"></div>
+            </div>
+            <div  class="nav"></div>
+            <div></div>
+            <div class="footer"></div>
+            <div class="footer"></div>
+        </div>
+    </body>
+    <script>
+        fetch("/test2",
+        {
+            method: "GET",
+            headers: {
+                "content-type": "application/json"
+            },
+           
+        }).then((res) => {
+           return res.json()
+        })
+        .then((res) => {
+            const abs = document.getElementById("absolute")
+
+            abs.innerText = res.test
+        })
+    </script>
+</html>

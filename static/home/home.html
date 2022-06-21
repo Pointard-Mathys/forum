@@ -1,0 +1,202 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wYk - FORUM</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/home/home.css">
+</head>
+
+<body>
+    {{template "Header" .}}
+
+    <header>
+        <div class="absolute-center">
+        </div>
+        <h1>Le thème de cette semaine !</h1>
+        <h4>{{.Theme}}</h4>
+        <a href="#left"><button>Parcourir</button></a>
+    </header>
+    <canvas></canvas>
+
+    <section class="main" id="produits">
+        <div class="cardleft">
+            <div class="cardright">
+                <div class="separateur"></div>
+                <p class="textIN">CREE TES PROPRES TOPICS MAINTENANT !</p>
+                <a href="/create-topic" id="openBtn">C'EST PARTI !</a>
+            </div>
+        </div>
+        <div class="scroller" id="topic-container"></div>
+        <div class="cardleft2">
+            <div class="cardright2">
+                <div class="separateur2"></div>
+                <div class="titlecard2">Rappel des règles :</div>
+                <p class="textIN2"><br> · Pas d’usage abusif de majuscules
+                    <br> · Pondération, civisme et courtoisie
+                    <br> · Aucune discrimination ni harcèlement.
+                    <br> · Pas de contenu illégal, obscène ou diffamatoire
+                    <br> · Pas de publicités ni de sollicitations
+                    <br> · Pas de liens frauduleux
+                    <br></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+
+        <h1>Forum wYk !</h1>
+        <div class="services">
+
+            <div class="service">
+                <h3>Discussion Libre</h3>
+                <p>Sur notre forum vous pourrez librement discuter des sujets de la semaine, débattre avec d'autres personnes en ligne.</p>
+            </div>
+
+            <div class="service">
+                <h3>Thème de la semaine</h3>
+                <p>Le nom de notre site "wYk" fait référence au mot anglophone "week" qui veut dire semaine, et c'est pour cela que chaque semaine un thème différent apparaîtra !</p>
+            </div>
+
+            <div class="service">
+                <h3>Contact</h3>
+                <p>En cas de problème, faites-le nous savoir grâce au numéro de téléphone indiqué ou encore au lien support qui se situe ci-dessous</p>
+            </div>
+
+        </div>
+
+        <p id="contact">Contact : 07 07 07 07 07| &copy; 2022, wYk.<a href="/support" class="btnSup">SUPPORT</a></p>
+    </footer>
+
+    <script type="module" src="/static/testpage/addmessage.js"></script>
+    <script>
+        canvas = document.getElementsByTagName('canvas')[0];
+        canvas.width = document.body.clientWidth;
+        canvas.height = document.body.clientHeight;
+
+        var ctx = canvas.getContext('2d');
+
+        var characterList = ['w', 'Y', 'k', 'wYk'];
+
+        var layers = {
+            n: 9, //number of layers
+            letters: [100, 40, 30, 20, 10], //letters per layer (starting from the deepest layer)
+            coef: [0.1, 0.2, 0.4, 0.6, 0.8], //how much the letters move from the mouse (starting from the deepest layer)
+            size: [16, 20, 32, 36, 41], //font size of the letters (starting from the deepest layer)
+            color: ['#545454', '#545454', '#545454', '#545454', '#545454'], //color of the letters (starting from the deepest layer)
+            font: 'Courier' //font family (of every layer)
+        };
+
+        /*End of options*/
+
+
+
+        var characters = [];
+        var mouseX = document.body.clientWidth / 2;
+        var mouseY = document.body.clientHeight / 2;
+
+        var rnd = {
+            btwn: function(min, max) {
+                return Math.floor(Math.random() * (max - min) + min);
+            },
+            choose: function(list) {
+                return list[rnd.btwn(0, list.length)];
+            }
+        };
+
+
+
+        /*LETTER DRAWING*/
+
+        function drawLetter(char) {
+            ctx.font = char.size + 'px ' + char.font;
+            ctx.fillStyle = char.color;
+
+            var x = char.posX + (mouseX - canvas.width / 2) * char.coef;
+            var y = char.posY + (mouseY - canvas.height / 2) * char.coef;
+
+            ctx.fillText(char.char, x, y);
+        }
+
+
+
+        /*ANIMATION*/
+
+        document.onmousemove = function(ev) {
+            mouseX = ev.pageX - canvas.offsetLeft;
+            mouseY = ev.pageY - canvas.offsetTop;
+
+            if (window.requestAnimationFrame) {
+                requestAnimationFrame(update);
+            } else {
+                update();
+            }
+        };
+
+        function update() {
+            clear();
+            render();
+        }
+
+        function clear() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function render() {
+            for (var i = 0; i < characters.length; i++) {
+                drawLetter(characters[i]);
+            }
+        }
+
+
+
+        /*INITIALIZE*/
+
+        function createLetters() {
+            for (var i = 0; i < layers.n; i++) {
+                for (var j = 0; j < layers.letters[i]; j++) {
+
+                    var character = rnd.choose(characterList);
+                    var x = rnd.btwn(0, canvas.width);
+                    var y = rnd.btwn(0, canvas.height);
+
+                    characters.push({
+                        char: character,
+                        font: layers.font,
+                        size: layers.size[i],
+                        color: layers.color[i],
+                        layer: i,
+                        coef: layers.coef[i],
+                        posX: x,
+                        posY: y
+                    });
+
+                }
+            }
+        }
+
+        createLetters();
+        update();
+
+        /*réajuste le canvas après la modification de la taille du site*/
+
+        window.onresize = function() {
+            location.reload();
+        };
+
+        var compteur = 0;
+
+        function incrementClick() {
+            updateDisplay(compteur + 1);
+        }
+
+
+
+        function updateDisplay(val) {
+            document.getElementById("counter-label").innerHTML = val;
+        }
+    </script>
+</body>
+
+</html>

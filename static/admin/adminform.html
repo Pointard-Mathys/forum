@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/adminform.css">
+</head>
+
+<body class="background">
+    {{template "Header"}}
+    <div>
+        <header class="font">
+            Pannel-admin
+        </header>
+    </div>
+    <div class="color">
+        <form class="mar" action="/redirect-theme" method="post">
+            <label for="fname">ajout de thême:</label>
+            <input type="text" placeholder="Un seul mot" name="Theme" id="Theme" minlength="1">
+            <input type="submit" value="Submit">
+        </form>
+        <div>
+            <form class="schear" action="/redirect-admin" class="Form" method="post">
+                <select name="IDtype" id="IDtype">
+                    <!-- <option value="">--catégorie--</option> -->
+                    <option value="utilisateur">Utilisateur</option>
+                    <option value="topic">Topic</option>
+                    <option value="reponse">Réponse</option>
+                </select>
+                <input type="text" id="IdToDelet" name="IdToDelet" minlength="1" placeholder="suppression via ID">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
